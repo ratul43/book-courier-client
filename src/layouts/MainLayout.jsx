@@ -5,13 +5,18 @@ import { Outlet } from 'react-router';
 
 const MainLayout = () => {
     return (
-        <div className='flex flex-col min-h-screen'>
+
+        <div className='max-w-7xl mx-auto'>
+            <div className='flex flex-col min-h-screen'>
             <Navbar></Navbar>
            <div className='flex-1'>
              <Outlet></Outlet>
            </div>
             <Footer></Footer>
         </div>
+        </div>
+
+        
     );
 };
 
