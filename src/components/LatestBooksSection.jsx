@@ -1,11 +1,103 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const LatestBooksSection = () => {
-    return (
-        <div>
-            I'm Latest books section 
-        </div>
-    );
+  const [latestBooks, setLatestBooks] = useState([]);
+  useEffect(() => {
+    fetch("latestBooks.json")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setLatestBooks(data);
+      });
+  }, []);
+
+  return (
+    <section className="py-8 px-4">
+      <h2 className="text-3xl font-bold mb-6 text-center">Latest Books</h2>
+
+      <Swiper
+        modules={[Autoplay, Pagination, Navigation]}
+        slidesPerView={1}
+        spaceBetween={20}
+        loop={true}
+        autoplay={{ delay: 1000 }}
+        infinite
+        // pagination={{ clickable: true }}
+        breakpoints={{
+          320: { slidesPerView: 1 },
+          640: { slidesPerView: 2 },
+          1024: { slidesPerView: 2 },
+        }}
+      >
+        {latestBooks.map((latestBook) => (
+          <SwiperSlide>
+            <div className="card bg-base-100 shadow-md hover:shadow-xl transition rounded-lg overflow-hidden">
+              <img
+                src={latestBook.image}
+                alt={latestBook.name}
+                className="w-full h-48 object-contain p-4 bg-white"
+              />
+              <div className="p-4">
+                <h3 className="font-bold text-lg">{latestBook.name}</h3>
+                <p className="text-gray-500 text-sm mt-1">
+                  {latestBook.shortDescription}
+                </p>
+                <button className="btn btn-primary btn-sm mt-4 w-fit">
+                  View Details
+                </button>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+
+        {/* <SwiperSlide>
+          <div className="card bg-base-100 shadow-md hover:shadow-xl transition rounded-lg overflow-hidden">
+            <img
+              src="https://images-na.ssl-images-amazon.com/images/I/71g2ednj0JL.jpg"
+              alt="The Psychology of Money"
+              className="w-full h-48 object-contain p-4 bg-white"
+            />
+            <div className="p-4">
+              <h3 className="font-bold text-lg">The Psychology of Money</h3>
+              <p className="text-gray-500 text-sm mt-1">
+                Timeless lessons on wealth, greed, and happiness.
+              </p>
+              <button className="btn btn-primary btn-sm mt-4 w-fit">
+                View Details
+              </button>
+            </div>
+          </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <div className="card bg-base-100 shadow-md hover:shadow-xl transition rounded-lg overflow-hidden">
+            <img
+              src="https://images-na.ssl-images-amazon.com/images/I/81bsw6fnUiL.jpg"
+              alt="Rich Dad Poor Dad"
+              className="w-full h-48 object-contain p-4 bg-white"
+            />
+            <div className="p-4">
+              <h3 className="font-bold text-lg">Rich Dad Poor Dad</h3>
+              <p className="text-gray-500 text-sm mt-1">
+                What the rich teach their kids about money.
+              </p>
+              <button className="btn btn-primary btn-sm mt-4 w-fit">
+                View Details
+              </button>
+            </div>
+          </div>
+        </SwiperSlide> */}
+
+        {/* Add more static slides as needed */}
+      </Swiper>
+    </section>
+  );
 };
 
 export default LatestBooksSection;

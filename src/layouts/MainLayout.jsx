@@ -5,6 +5,7 @@ import { Outlet } from 'react-router';
 import LatestBooksSection from '../components/LatestBooksSection';
 import Coverage from '../components/Coverage';
 import Banner from '../components/Banner';
+import Slider1 from '../components/Sliders/Slider1';
 
 const MainLayout = () => {
     return (
@@ -13,6 +14,7 @@ const MainLayout = () => {
             <div className='flex flex-col min-h-screen'>
             <Navbar></Navbar>
             <Banner></Banner>
+            <Slider1></Slider1>
             <LatestBooksSection></LatestBooksSection>
             <Coverage></Coverage>
            <div className='flex-1'>
