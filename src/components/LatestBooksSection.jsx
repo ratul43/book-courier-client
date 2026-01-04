@@ -37,22 +37,25 @@ const LatestBooksSection = () => {
       >
         {latestBooks.map((latestBook) => (
           <SwiperSlide>
-            <div className="card bg-base-100 shadow-md hover:shadow-xl transition rounded-lg overflow-hidden">
-              <img
-                src={latestBook.image}
-                alt={latestBook.name}
-                className="w-full h-48 object-contain p-4 bg-white"
-              />
-              <div className="p-4">
-                <h3 className="font-bold text-lg">{latestBook.name}</h3>
-                <p className="text-gray-500 text-sm mt-1">
-                  {latestBook.shortDescription}
-                </p>
-                <button className="btn btn-primary btn-sm mt-4 w-fit">
-                  View Details
-                </button>
-              </div>
-            </div>
+            <div className="card bg-base-100 shadow-md hover:shadow-xl transition rounded-lg overflow-hidden flex flex-col h-90">
+  <img
+    src={latestBook.image}
+    alt={latestBook.name}
+    className="w-full h-48 object-contain p-4 bg-white flex-shrink-0"
+  />
+  <div className="p-4 flex flex-col flex-grow overflow-hidden">
+    <h3 className="font-bold text-lg">{latestBook.name}</h3>
+    <p className="text-gray-500 text-sm mt-1 overflow-hidden text-ellipsis">
+      {latestBook.shortDescription}
+    </p>
+    <div className="mt-auto">
+      <button className="btn btn-primary btn-sm w-fit">
+        View Details
+      </button>
+    </div>
+  </div>
+</div>
+
           </SwiperSlide>
         ))}
 
