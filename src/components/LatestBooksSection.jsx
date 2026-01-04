@@ -27,7 +27,6 @@ const LatestBooksSection = () => {
         spaceBetween={20}
         loop={true}
         autoplay={{ delay: 1000 }}
-        infinite
         // pagination={{ clickable: true }}
         breakpoints={{
           320: { slidesPerView: 1 },
