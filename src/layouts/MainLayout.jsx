@@ -6,6 +6,7 @@ import LatestBooksSection from '../components/LatestBooksSection';
 import Coverage from '../components/Coverage';
 import Banner from '../components/Banner';
 import Slider1 from '../components/Sliders/Slider1';
+import WhyChoose from '../components/WhyChoose';
 
 const MainLayout = () => {
     return (
@@ -17,6 +18,7 @@ const MainLayout = () => {
             <Slider1></Slider1>
             <LatestBooksSection></LatestBooksSection>
             <Coverage></Coverage>
+            <WhyChoose></WhyChoose>
            <div className='flex-1'>
              <Outlet></Outlet>
            </div>

@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "Sarah Johnson",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI_6Q0G07rnkPKSWHjB1SpuIj7BLwqLPe5zg&s",
+    "role": "Book Lover",
+    "review": "BookCourier delivers books super fast! The quality and service are amazing. Highly recommended."
+  },
+  {
+    "id": 2,
+    "name": "Michael Lee",
+    "photo": "https://kylebondeson.com/wp-content/uploads/2025/05/kyle-bondeson-business-headshot-chicago-44.jpg",
+    "role": "Student",
+    "review": "Affordable prices and a great book collection. I found all my academic books here."
+  },
+  {
+    "id": 3,
+    "name": "Emma Wilson",
+    "photo": "https://images.squarespace-cdn.com/content/v1/552403f5e4b00ed50628c8b9/61ad383a-423e-4e05-b934-4f1653d76a8d/BrusselsHeadshot_Hedashot_Corporate_Photographer_Studio_Session_Business_LinkedIn_CV_Shooting_Professional_PortraitBruxelles_Prix_Price_Best_Devis_Quote_Lillo_Mendola_240801_02893.jpg",
+    "role": "Freelancer",
+    "review": "Smooth ordering process and excellent customer support. Will definitely order again!"
+  },
+  {
+    "id": 4,
+    "name": "Daniel Smith",
+    "photo": "https://i.pravatar.cc/100?img=12",
+    "role": "Entrepreneur",
+    "review": "Excellent packaging and fast delivery. BookCourier is now my go-to place for books."
+  },
+  {
+    "id": 5,
+    "name": "Olivia Brown",
+    "photo": "https://www.headshots-london.co.uk/wp-content/uploads/2019/11/1x1-Crop-Corporate-Headshot.-Photography-headshots-london.co_.uk_.jpg",
+    "role": "Teacher",
+    "review": "A wide range of books at reasonable prices. My students love the recommendations."
+  },
+  {
+    "id": 6,
+    "name": "James Anderson",
+    "photo": "https://i.pravatar.cc/100?img=18",
+    "role": "Researcher",
+    "review": "Finding research books was never this easy. Reliable service and fast shipping."
+  },
+  {
+    "id": 7,
+    "name": "Sophia Martinez",
+    "photo": "https://serenabolton.com/wp-content/uploads/2022/12/image-1080x720.png",
+    "role": "Content Writer",
+    "review": "Beautiful UI and smooth checkout process. BookCourier makes buying books enjoyable."
+  },
+  {
+    "id": 8,
+    "name": "William Turner",
+    "photo": "https://www.shutterstock.com/image-photo/happy-young-indian-business-man-600nw-2207246131.jpg",
+    "role": "Engineer",
+    "review": "Great experience from browsing to delivery. Prices are competitive and fair."
+  },
+  {
+    "id": 9,
+    "name": "Ava Thompson",
+    "photo": "https://i.pravatar.cc/100?img=30",
+    "role": "College Student",
+    "review": "I saved a lot with their discounts. Fast delivery and genuine books."
+  },
+  {
+    "id": 10,
+    "name": "Noah Wilson",
+    "photo": "https://i.pravatar.cc/100?img=35",
+    "role": "Startup Founder",
+    "review": "Customer support is responsive and helpful. Highly satisfied with the service."
+  }
+]
