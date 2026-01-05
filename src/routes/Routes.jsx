@@ -4,6 +4,8 @@ import DashBoardLayout from "../layouts/DashBoardLayout";
 import AuthLayout from "../layouts/AuthLayout";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
+import HomePage from "../pages/Home/HomePage";
+import AllBooksPage from './../pages/AllBooksPage';
 
 export const router = createBrowserRouter([
   {
@@ -11,7 +13,12 @@ export const router = createBrowserRouter([
     element: <MainLayout> </MainLayout>,
     children: [
       {
-
+        index: true,
+        element: <HomePage></HomePage>
+      },
+      {
+        path: "/allBooks",
+        Component: AllBooksPage
       }
     ]
   },

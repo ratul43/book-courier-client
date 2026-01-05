@@ -14,11 +14,7 @@ const MainLayout = () => {
         <div className='max-w-7xl mx-auto'>
             <div className='flex flex-col min-h-screen'>
             <Navbar></Navbar>
-            <Banner></Banner>
-            <Slider1></Slider1>
-            <LatestBooksSection></LatestBooksSection>
-            <Coverage></Coverage>
-            <WhyChoose></WhyChoose>
+            
            <div className='flex-1'>
              <Outlet></Outlet>
            </div>

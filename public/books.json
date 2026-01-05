@@ -1,0 +1,212 @@
+[
+  {
+    "id": 1,
+    "name": "Atomic Habits",
+    "author": "James Clear",
+    "price": 14.99,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/81bGKUa1e0L.jpg"
+  },
+  {
+    "id": 2,
+    "name": "The Psychology of Money",
+    "author": "Morgan Housel",
+    "price": 13.49,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/71g2ednj0JL.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Rich Dad Poor Dad",
+    "author": "Robert Kiyosaki",
+    "price": 12.99,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/81bsw6fnUiL.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Ikigai",
+    "author": "Héctor García",
+    "price": 15.99,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/71tbalAHYCL.jpg"
+  },
+  {
+    "id": 5,
+    "name": "The Let Them Theory",
+    "author": "Mel Robbin",
+    "price": 13.99,
+    "image": "https://m.media-amazon.com/images/I/91ZVf3kNrcL._SY342_.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Deep Work",
+    "author": "Cal Newport",
+    "price": 14.49,
+    "image": "https://m.media-amazon.com/images/I/81QnLz6AK4L._SY342_.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Theo of Golden",
+    "author": "Allen Levi",
+    "price": 11.99,
+    "image": "https://m.media-amazon.com/images/I/719tyQROiWL._SY342_.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Eat Your Ice Cream",
+    "author": "Ezekiel J. EmanuelEzekiel J. Emanuel",
+    "price": 16.49,
+    "image": "https://m.media-amazon.com/images/I/61h36H7cZEL._SY342_.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Can't Hurt Me",
+    "author": "David Goggins",
+    "price": 15.49,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/81gTRv2HXrL.jpg"
+  },
+  {
+    "id": 10,
+    "name": "The 48 Laws of Power",
+    "author": "Robert Greene",
+    "price": 17.99,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/71aG+xDKSYL.jpg"
+  },
+  {
+    "id": 11,
+    "name": "The Alchemist",
+    "author": "Paulo Coelho",
+    "price": 10.99,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/71aFt4+OTOL.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Think and Grow Rich",
+    "author": "Napoleon Hill",
+    "price": 12.49,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/71UypkUjStL.jpg"
+  },
+  {
+    "id": 13,
+    "name": "The Last Letter",
+    "author": "Rebecca Yarros",
+    "price": 13.79,
+    "image": "https://m.media-amazon.com/images/I/81mrHyhbtTL._SY342_.jpg"
+  },
+  {
+    "id": 14,
+    "name": "1929: Inside the Greatest Crash in Wall Street History",
+    "author": "Andrew Ross Sorkin",
+    "price": 11.89,
+    "image": "https://m.media-amazon.com/images/I/71ojtb1VxuL._SY342_.jpg"
+  },
+  {
+    "id": 15,
+    "name": "Broken Country",
+    "author": "Clare Leslie Hall",
+    "price": 9.99,
+    "image": "https://m.media-amazon.com/images/I/81oVD-e7LgL._SY342_.jpg"
+  },
+  {
+    "id": 16,
+    "name": "Reminders of Him",
+    "author": "Collen Hoover",
+    "price": 14.29,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/71rdsaOMvVL._AC_UL300_SR300,200_.jpg"
+  },
+  {
+    "id": 17,
+    "name": "The Only Living Trusts Book",
+    "author": "Garrett Monore",
+    "price": 13.99,
+    "image": "https://m.media-amazon.com/images/I/61tKQfe-ccL._SY342_.jpg"
+  },
+  {
+    "id": 18,
+    "name": "The Lean Startup",
+    "author": "Eric Ries",
+    "price": 16.99,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg"
+  },
+  {
+    "id": 19,
+    "name": "Zero to One",
+    "author": "Peter Thiel",
+    "price": 15.29,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/71m-MxdJ2WL.jpg"
+  },
+  {
+    "id": 20,
+    "name": "Educated",
+    "author": "Tara Westover",
+    "price": 14.99,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/81WojUxbbFL.jpg"
+  },
+  {
+    "id": 21,
+    "name": "The 5 AM Club",
+    "author": "Robin Sharma",
+    "price": 16.29,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/71zytzrg6lL.jpg"
+  },
+  {
+    "id": 22,
+    "name": "Brimstone",
+    "author": "Callie Hart",
+    "price": 15.89,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/81T4ItM5TzL._AC_UL300_SR300,200_.jpg"
+  },
+  {
+    "id": 23,
+    "name": "The Power of Habit",
+    "author": "Charles Duhigg",
+    "price": 14.19,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/71ONWR6eXDL.jpg"
+  },
+  {
+    "id": 24,
+    "name": "The Pivot Year",
+    "author": "Brianna Wiest",
+    "price": 13.69,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/81OvOzDu3fL._AC_UL300_SR300,200_.jpg"
+  },
+  {
+    "id": 25,
+    "name": "Dad, I want to hear your story",
+    "author": "Jeffrey Mason",
+    "price": 12.99,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/51+ROKEYviL._AC_UL300_SR300,200_.jpg"
+  },
+  {
+    "id": 26,
+    "name": "The One Thing",
+    "author": "Gary Keller",
+    "price": 13.59,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/71uAI28kJuL.jpg"
+  },
+  {
+    "id": 27,
+    "name": "The Intruder",
+    "author": "Freida McFadden",
+    "price": 16.79,
+    "image": "https://images-na.ssl-images-amazon.com/images/I/91VISS02GjL._AC_UL300_SR300,200_.jpg"
+  },
+  {
+    "id": 28,
+    "name": "Atomic Focus",
+    "author": "Patrick McKeown",
+    "price": 14.69,
+    "image": "https://m.media-amazon.com/images/I/61q3hPy7wGL._SY342_.jpg"
+  },
+  {
+    "id": 29,
+    "name": "Mindset",
+    "author": "Carol S. Dweck",
+    "price": 13.99,
+    "image": "https://m.media-amazon.com/images/I/71h937MExWL._SY342_.jpg"
+  },
+  {
+    "id": 30,
+    "name": "The Power of Discipline",
+    "author": "Daniel Walter",
+    "price": 11.99,
+    "image": "https://m.media-amazon.com/images/I/41XF0rhPatL._SY445_SX342_FMwebp_.jpg"
+  }
+]

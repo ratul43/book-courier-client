@@ -1,9 +1,10 @@
 import React from 'react';
+import BooksCard from '../elements/BooksCard';
 
 const AllBooksPage = () => {
     return (
         <div>
-            All books page 
+        <BooksCard></BooksCard>
         </div>
     );
 };
