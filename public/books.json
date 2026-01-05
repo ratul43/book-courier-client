@@ -3,6 +3,7 @@
     "id": 1,
     "name": "Atomic Habits",
     "author": "James Clear",
+    "description": "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones is a 2018 self-help book on habit formation by writer James Clear. The book received acclaim from most critics, with a few strongly disapproving of its claims.",
     "price": 14.99,
     "image": "https://images-na.ssl-images-amazon.com/images/I/81bGKUa1e0L.jpg"
   },
@@ -10,6 +11,8 @@
     "id": 2,
     "name": "The Psychology of Money",
     "author": "Morgan Housel",
+"description": "Morgan Housel's, 'The Psychology of Money' explores how emotion, behavior, and decision-making shape financial success. Key lessons include understanding luck, compounding, humility, controlling expenses, and avoiding lifestyle inflation. Patience and disciplined spending are essential.",
+
     "price": 13.49,
     "image": "https://images-na.ssl-images-amazon.com/images/I/71g2ednj0JL.jpg"
   },
@@ -17,6 +20,7 @@
     "id": 3,
     "name": "Rich Dad Poor Dad",
     "author": "Robert Kiyosaki",
+    "description": "Kiyosaki stresses the need for financial literacy and encourages readers to take control of their financial destinies by seeking out opportunities, learning from mistakes, and continuously educating themselves about money.",
     "price": 12.99,
     "image": "https://images-na.ssl-images-amazon.com/images/I/81bsw6fnUiL.jpg"
   },
@@ -24,6 +28,7 @@
     "id": 4,
     "name": "Ikigai",
     "author": "Héctor García",
+    "description":"Ikigai reveals the secrets to their longevity and happiness: how they eat, how they move, how they work, how they foster collaboration and community, and—their best-kept secret—how they find the ikigai that brings satisfaction to their lives. And it provides practical tools to help you discover your own ikigai.",
     "price": 15.99,
     "image": "https://images-na.ssl-images-amazon.com/images/I/71tbalAHYCL.jpg"
   },
@@ -31,6 +36,7 @@
     "id": 5,
     "name": "The Let Them Theory",
     "author": "Mel Robbin",
+    "description":"Human beings only change when they feel like it… You will never be able to force them to change if they don't want to. Let Them be who they are, and Let Me decide what I want to do about it. Learn more about how “Let Them” and “Let Me” can change your life",
     "price": 13.99,
     "image": "https://m.media-amazon.com/images/I/91ZVf3kNrcL._SY342_.jpg"
   },
@@ -38,6 +44,7 @@
     "id": 6,
     "name": "Deep Work",
     "author": "Cal Newport",
+    "description":"Deep work is the ability to concentrate on a task without any distractions. It allows you to overcome challenges, master new skills more quickly, and produce better results in less time. It lets you focus and operate on your tasks without any interruptions.",
     "price": 14.49,
     "image": "https://m.media-amazon.com/images/I/81QnLz6AK4L._SY342_.jpg"
   },
@@ -45,6 +52,7 @@
     "id": 7,
     "name": "Theo of Golden",
     "author": "Allen Levi",
+    "description":"Theo of Golden is the endearing story of a curious old man who quietly moves into a southern city and, for reasons unknown to anyone but himself, undertakes a campaign of anonymous generosity. Theo's love for people, combined with his fondness for books, art, birds, and story, unite in a colorful",
     "price": 11.99,
     "image": "https://m.media-amazon.com/images/I/719tyQROiWL._SY342_.jpg"
   },
@@ -52,6 +60,7 @@
     "id": 8,
     "name": "Eat Your Ice Cream",
     "author": "Ezekiel J. EmanuelEzekiel J. Emanuel",
+    "description":"In Eat Your Ice Cream, renowned physician Ezekiel J. Emanuel argues that life is not a competition to live the longest and that “wellness” shouldn't be difficult; it should be an invisible part of one's lifestyle that yields maximum health benefits with the least work.",
     "price": 16.49,
     "image": "https://m.media-amazon.com/images/I/61h36H7cZEL._SY342_.jpg"
   },
@@ -59,6 +68,7 @@
     "id": 9,
     "name": "Can't Hurt Me",
     "author": "David Goggins",
+    "description":"What's it about? Through extreme self-discipline and mental toughness, David Goggins overcame childhood trauma to become an elite military serviceman and endurance athlete, revealing how to unlock human potential beyond 40%.",
     "price": 15.49,
     "image": "https://images-na.ssl-images-amazon.com/images/I/81gTRv2HXrL.jpg"
   },
@@ -66,6 +76,7 @@
     "id": 10,
     "name": "The 48 Laws of Power",
     "author": "Robert Greene",
+    "description":"You can gain power by being or looking competent (Laws 7, 11, 26, 30), mysterious (Laws 3, 4, 6, 16, 17), regal and “above the fray” (Laws 34, 36). You may look weak by getting angry or emotional over things you can't have (Law 36) or being compared to someone greater than you (Law 41).",
     "price": 17.99,
     "image": "https://images-na.ssl-images-amazon.com/images/I/71aG+xDKSYL.jpg"
   },
@@ -73,6 +84,7 @@
     "id": 11,
     "name": "The Alchemist",
     "author": "Paulo Coelho",
+    "description":"What's it about? Young shepherd Santiago journeys from Spain to Egypt in search of buried treasure, encountering spiritual teachers and life lessons along his quest for destiny.",
     "price": 10.99,
     "image": "https://images-na.ssl-images-amazon.com/images/I/71aFt4+OTOL.jpg"
   },
@@ -80,6 +92,7 @@
     "id": 12,
     "name": "Think and Grow Rich",
     "author": "Napoleon Hill",
+    "description":"Think and Grow Rich condenses them, providing the reader with 14 principles in the form of a Philosophy of Achievement. The main theme of the book is that anyone can achieve success and wealth by following a certain set of principles.",
     "price": 12.49,
     "image": "https://images-na.ssl-images-amazon.com/images/I/71UypkUjStL.jpg"
   },
@@ -87,6 +100,7 @@
     "id": 13,
     "name": "The Last Letter",
     "author": "Rebecca Yarros",
+    "description":"What's it about? A heartbreaking letter from a fallen soldier begs his best friend to care for his sister and her twins, revealing a devastating family secret.",
     "price": 13.79,
     "image": "https://m.media-amazon.com/images/I/81mrHyhbtTL._SY342_.jpg"
   },
@@ -94,6 +108,7 @@
     "id": 14,
     "name": "1929: Inside the Greatest Crash in Wall Street History",
     "author": "Andrew Ross Sorkin",
+    "description":"This book captures the stock market crash of 1929 and the early years of the Great Depression in searing detail. Sorkin's astute analysis challenges the conventional wisdom of the causes and circumstances of the Depression in a vital way.",
     "price": 11.89,
     "image": "https://m.media-amazon.com/images/I/71ojtb1VxuL._SY342_.jpg"
   },
@@ -101,6 +116,7 @@
     "id": 15,
     "name": "Broken Country",
     "author": "Clare Leslie Hall",
+    "description":"The pacing is excellent, with enough twists and turns to keep the reader engaged. However, some might find the constant shifts between past and present a bit disorienting. Despite this, Broken Country is a compelling read that explores themes of love, loss, and the impact of buried secrets.",
     "price": 9.99,
     "image": "https://m.media-amazon.com/images/I/81oVD-e7LgL._SY342_.jpg"
   },
@@ -108,6 +124,7 @@
     "id": 16,
     "name": "Reminders of Him",
     "author": "Collen Hoover",
+    "description":"After serving five years in prison for a tragic mistake, Kenna Rowan returns to the town where it all went wrong, hoping to reunite with her four-year-old daughter. But the bridges Kenna burned are proving impossible to rebuild.",
     "price": 14.29,
     "image": "https://images-na.ssl-images-amazon.com/images/I/71rdsaOMvVL._AC_UL300_SR300,200_.jpg"
   },
@@ -115,6 +132,7 @@
     "id": 17,
     "name": "The Only Living Trusts Book",
     "author": "Garrett Monore",
+    "description":"The trustee can be an individual, a corporate trustee, or a combination of both. Naming a trusted family member has some advantages, but a corporate trustee has expertise that a family member typically doesn't have. That's why it's essential to assess all your options.",
     "price": 13.99,
     "image": "https://m.media-amazon.com/images/I/61tKQfe-ccL._SY342_.jpg"
   },
@@ -122,6 +140,7 @@
     "id": 18,
     "name": "The Lean Startup",
     "author": "Eric Ries",
+    "description":"Lean startup is a methodology for developing businesses and products that aims to shorten product development cycles and rapidly discover if a proposed business model is viable; this is achieved by adopting a combination of business-hypothesis-driven experimentation, iterative product releases, and validated learning.",
     "price": 16.99,
     "image": "https://images-na.ssl-images-amazon.com/images/I/81-QB7nDh4L.jpg"
   },
@@ -129,6 +148,7 @@
     "id": 19,
     "name": "Zero to One",
     "author": "Peter Thiel",
+    "description":"The core idea of Zero to One is simple yet profound: creating something new (going from 0 to 1) is fundamentally different from copying something that already exists (going from 1 to n). Thiel emphasizes that true innovation happens when we break away from conventions and explore uncharted territories.",
     "price": 15.29,
     "image": "https://images-na.ssl-images-amazon.com/images/I/71m-MxdJ2WL.jpg"
   },
@@ -136,6 +156,7 @@
     "id": 20,
     "name": "Educated",
     "author": "Tara Westover",
+    "description":"Self-Discovery and Identity: Educated explores the complexities of personal identity and the process of self-discovery. Tara grapples with conflicting loyalties to her family and her own desire for autonomy and self -expression, ultimately forging her own identity through education and life experiences.",
     "price": 14.99,
     "image": "https://images-na.ssl-images-amazon.com/images/I/81WojUxbbFL.jpg"
   },
@@ -143,6 +164,7 @@
     "id": 21,
     "name": "The 5 AM Club",
     "author": "Robin Sharma",
+    "description":"The 5am club has a few simple rules. Every member should wake at 5 o'clock each day and spend the first hour focusing on their personal development using a 20/20/20 model, such as: 20 minutes of exercise. 20 minutes of self-reflection. 20 minutes of progressing towards your goals.",
     "price": 16.29,
     "image": "https://images-na.ssl-images-amazon.com/images/I/71zytzrg6lL.jpg"
   },
@@ -150,6 +172,7 @@
     "id": 22,
     "name": "Brimstone",
     "author": "Callie Hart",
+    "description":"Fisher must wrangle the smuggler and accomplish his goals quickly if he wants to see his mate again. A darkness falls across Yvelia. The realm and their friends are in danger. Together, Saeris and Fisher will pass through fire and brimstone to save them.",
     "price": 15.89,
     "image": "https://images-na.ssl-images-amazon.com/images/I/81T4ItM5TzL._AC_UL300_SR300,200_.jpg"
   },
@@ -157,6 +180,7 @@
     "id": 23,
     "name": "The Power of Habit",
     "author": "Charles Duhigg",
+    "description":"At its core, The Power of Habit contains an exhilarating argument: The key to exercising regularly, losing weight, raising exceptional children, becoming more productive, building revolutionary companies and social movements, and achieving success is understanding how habits work.",
     "price": 14.19,
     "image": "https://images-na.ssl-images-amazon.com/images/I/71ONWR6eXDL.jpg"
   },
@@ -164,6 +188,7 @@
     "id": 24,
     "name": "The Pivot Year",
     "author": "Brianna Wiest",
+    "description":"The Pivot Year is a book of 365 daily meditations on finding the courage to become who you've always wanted to be, from the internationally bestselling author of 101 Essays That Will Change The Way You Think, The Mountain Is You, and more.",
     "price": 13.69,
     "image": "https://images-na.ssl-images-amazon.com/images/I/81OvOzDu3fL._AC_UL300_SR300,200_.jpg"
   },
@@ -171,6 +196,7 @@
     "id": 25,
     "name": "Dad, I want to hear your story",
     "author": "Jeffrey Mason",
+    "description":"Dad, I Want to Hear Your Story will guide your Father with prompts and questions, making it fun and easy for him to share the stories of his childhood, teens, and adult years. This will be the tale of his life, his victories, his challenges, and his lessons.",
     "price": 12.99,
     "image": "https://images-na.ssl-images-amazon.com/images/I/51+ROKEYviL._AC_UL300_SR300,200_.jpg"
   },
@@ -178,6 +204,7 @@
     "id": 26,
     "name": "The One Thing",
     "author": "Gary Keller",
+    "description":"According to the book, this means that engaging in the one most important task will be more likely to produce the desired results without any extraneous effort. The book also differentiates between the Big-Picture Question (What's my ONE Thing?) and the Small-Focus Question (What's my ONE Thing right now?).",
     "price": 13.59,
     "image": "https://images-na.ssl-images-amazon.com/images/I/71uAI28kJuL.jpg"
   },
@@ -185,6 +212,7 @@
     "id": 27,
     "name": "The Intruder",
     "author": "Freida McFadden",
+    "description":"The Intruder by Freida McFadden is a psychological thriller about Casey, who retreats to an isolated cabin in the woods for peace but finds her solitude shattered by the appearance of a mysterious, blood-covered young girl with a knife during a hurricane, leading to a tense battle for survival as the girl's dark, abusive past and deadly secrets unravel, forcing Casey to confront terrifying truths and a desperate fight for her life.",
     "price": 16.79,
     "image": "https://images-na.ssl-images-amazon.com/images/I/91VISS02GjL._AC_UL300_SR300,200_.jpg"
   },
@@ -192,6 +220,7 @@
     "id": 28,
     "name": "Atomic Focus",
     "author": "Patrick McKeown",
+    "description":"Atomic Focus, by Patrick McKeown, is a practical guide using breathing techniques and neuroscience to improve concentration, mental clarity, and performance by training your brain to overcome stress and distractions, drawing on methods used by elite performers to achieve deep focus and build resilience for sustained success. It teaches actionable strategies, like simple breathing exercises, to manage your nervous system, tap into natural energy, and create lasting focus habits for greater productivity. ",
     "price": 14.69,
     "image": "https://m.media-amazon.com/images/I/61q3hPy7wGL._SY342_.jpg"
   },
@@ -199,6 +228,7 @@
     "id": 29,
     "name": "Mindset",
     "author": "Carol S. Dweck",
+    "description":"Mindset discusses the differences between people with a fixed mindset versus those with a growth mindset. Our mindset determines the way we deal with tough situations and setbacks as well as our willingness to deal with and improve ourselves.",
     "price": 13.99,
     "image": "https://m.media-amazon.com/images/I/71h937MExWL._SY342_.jpg"
   },
@@ -206,6 +236,7 @@
     "id": 30,
     "name": "The Power of Discipline",
     "author": "Daniel Walter",
+    "description":"The Power of Discipline (2020) explores the biological tendencies within our brains that determine our ability to control our self-discipline. It shows us how we can refine these tendencies in order to develop improved self-disciplinary habits and reach our goals.",
     "price": 11.99,
     "image": "https://m.media-amazon.com/images/I/41XF0rhPatL._SY445_SX342_FMwebp_.jpg"
   }
