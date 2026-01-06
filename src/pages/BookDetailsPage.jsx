@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLoaderData, useParams } from "react-router";
 
 const BookDetailsPage = () => {
   const { id } = useParams();
-  console.log(id);
   const data = useLoaderData();
-  console.log(data);
-
+  const orderModalRef = useRef();
   const [books, setBooks] = useState([]);
+
+  const openOrderModal = (order) => {
+    orderModalRef.current.showModal();
+  };
 
   useEffect(() => {
     const filteredBook = data.filter((book) => book.id === parseInt(id));
@@ -24,14 +26,14 @@ const BookDetailsPage = () => {
           <div className="flex justify-center">
             <img
               src={book.image}
-              alt="Atomic Habits"
+              alt={book.name}
               className="w-80 rounded-lg shadow-xl"
             />
           </div>
 
           {/* Right: Book Info */}
           <div className="space-y-5">
-            <h1 className="text-4xl font-bold">Atomic Habits</h1>
+            <h1 className="text-4xl font-bold">{book.name}</h1>
 
             <p className="text-lg text-gray-600">
               by <span className="font-semibold">{book.author}</span>
@@ -43,9 +45,66 @@ const BookDetailsPage = () => {
 
             {/* Buttons */}
             <div className="flex flex-wrap gap-4 pt-4">
-              <button className="btn btn-primary px-8">Order Now</button>
+              <button
+                onClick={() => openOrderModal()}
+                className="btn btn-primary px-8"
+              >
+                Order Now
+              </button>
 
               <button className="btn btn-outline px-8">Add to Wishlist</button>
+
+              <dialog
+                ref={orderModalRef}
+                className="modal modal-bottom sm:modal-middle"
+              >
+                <div className="modal-box">
+                  <p className="py-6 text-center text-xl font-bold">
+                    Fill up this form for order procedure
+                  </p>
+                  {/* form card  */}
+                  <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto">
+                    <div className="card-body">
+                      <fieldset className="fieldset">
+                        <label className="label">Name</label>
+                        <input
+                          type="text"
+                          className="input"
+                          placeholder="Name"
+                        />
+                        
+
+                        <label className="label">Email</label>
+                        <input
+                          type="email"
+                          className="input"
+                          placeholder="Email"
+                        />
+                        <label className="label">Phone</label>
+                        <input
+                          type="text"
+                          className="input"
+                          placeholder="Phone"
+                        />
+                        <label className="label">Address</label>
+                        <input
+                          type="text"
+                          className="input"
+                          placeholder="Address"
+                        />
+                     
+                        <button className="btn btn-neutral mt-4">Place Order</button>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div className="modal-action">
+                    <form method="dialog">
+                      {/* if there is a button in form, it will close the modal */}
+                      <button className="btn">Close</button>
+                    </form>
+                  </div>
+                </div>
+              </dialog>
             </div>
           </div>
         </div>
