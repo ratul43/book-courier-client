@@ -1,26 +1,26 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useLoaderData, useParams } from "react-router";
+import { useParams } from "react-router";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const BookDetailsPage = () => {
   const { id } = useParams();
-  const data = useLoaderData();
+
   const orderModalRef = useRef();
-  const [books, setBooks] = useState([]);
+  const [book, setBook] = useState([]);
+
+  const axiosSecure = useAxiosSecure();
 
   const openOrderModal = (order) => {
     orderModalRef.current.showModal();
   };
 
   useEffect(() => {
-    const filteredBook = data.filter((book) => book.id === parseInt(id));
-    setBooks(filteredBook);
-  }, [data, id]);
-
-  console.log(books);
+    axiosSecure.get(`/allBooks/${id}`).then((data) => setBook(data.data));
+  }, [axiosSecure, id]);
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-14">
-      {books.map((book) => (
+  
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           {/* Left: Book Image */}
           <div className="flex justify-center">
@@ -72,7 +72,6 @@ const BookDetailsPage = () => {
                           className="input"
                           placeholder="Name"
                         />
-                        
 
                         <label className="label">Email</label>
                         <input
@@ -92,8 +91,10 @@ const BookDetailsPage = () => {
                           className="input"
                           placeholder="Address"
                         />
-                     
-                        <button className="btn btn-neutral mt-4">Place Order</button>
+
+                        <button className="btn btn-neutral mt-4">
+                          Place Order
+                        </button>
                       </fieldset>
                     </div>
                   </div>
@@ -108,7 +109,7 @@ const BookDetailsPage = () => {
             </div>
           </div>
         </div>
-      ))}
+
     </div>
   );
 };

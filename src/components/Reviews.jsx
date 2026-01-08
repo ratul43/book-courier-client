@@ -19,7 +19,6 @@ const Reviews = () => {
         })
     }, [])
 
-    console.log(reviews);
 
   return (
     <section className="py-12">

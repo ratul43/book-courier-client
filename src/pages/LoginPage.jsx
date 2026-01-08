@@ -2,9 +2,28 @@ import React from 'react';
 import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { GrGithub } from 'react-icons/gr';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import useAuth from '../hooks/useAuth';
 
 const LoginPage = () => {
+        
+  const {signInGoogle} = useAuth()
+  const navigate = useNavigate()
+
+  const handleGoogleSignIn = ()=>{
+    signInGoogle()
+    .then(result => {
+      navigate("/")
+      console.log(result.user);
+    })
+    .catch(error=>{
+      console.log(error.message);
+    })
+  }
+
+
+
+
     return (
         <div>
       <div className="hero">
@@ -34,7 +53,7 @@ const LoginPage = () => {
     <p className="px-6 mt-2 text-sm text-center text-gray-400">
           Don't have an account?
           <Link
-            to="/login"
+            to="/register"
             className="hover:underline hover:text-lime-500 mx-1 font-semibold text-gray-600"
           >
             Register
@@ -51,10 +70,10 @@ const LoginPage = () => {
         </div>
 
  <div className="flex space-x-4 mx-auto">
-      <a>
-        <FcGoogle size={32}/>
+      <Link>
+        <FcGoogle onClick={handleGoogleSignIn} size={32}/>
 
-      </a>
+      </Link>
       <a>
         <GrGithub size={32}/>
       </a>

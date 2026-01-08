@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router";
+import useAuth from "../../hooks/useAuth";
 
 const MyProfile = () => {
+  const {user} = useAuth()
   return (
     <div className="max-w-5xl mx-auto px-6 py-12">
       
@@ -14,14 +16,14 @@ const MyProfile = () => {
         <div className="card bg-base-100 shadow-lg p-6 text-center">
           <div className="flex justify-center">
             <img
-              src="https://i.pravatar.cc/150?img=12"
+              src={user?.photoURL}
               alt="User Avatar"
               className="w-32 h-32 rounded-full border-4 border-primary"
             />
           </div>
 
-          <h2 className="text-xl font-semibold mt-4">John Doe</h2>
-          <p className="text-gray-500">john.doe@email.com</p>
+          <h2 className="text-xl font-semibold mt-4">{user?.displayName}</h2>
+          <p className="text-gray-500">{user?.email}</p>
 
           {/* Role Badge */}
           <div className="mt-3">
