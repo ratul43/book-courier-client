@@ -41,9 +41,9 @@ const BooksCard = () => {
             </div>
           </div>
 
-          <button className="btn btn-primary p-2 rounded-xl text-white font-semibold w-full sm:w-auto">
-            Order Now
-          </button>
+          <Link to={`/bookDetails/${book._id}`} className="btn btn-primary p-2 rounded-xl text-white font-semibold w-full sm:w-auto">
+            Details
+          </Link>
         </div>
       ))}
     </div>

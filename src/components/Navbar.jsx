@@ -202,12 +202,12 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex="-1"
-                className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-20 p-2 bg-base-100"
               >
                 <li>
-                  <Link to="/dashboard/my-profile" className="justify-between">
+                  <Link to="/dashboard/my-profile">
                 Profile
-                <span className="badge">New</span>
+                
               </Link>
                 </li>
                 
@@ -216,6 +216,13 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
+
+ <input
+           onChange={(e) => handleTheme(e.target.checked)}
+           type="checkbox"
+           defaultChecked={localStorage.getItem('theme') === "dark"}
+           className="toggle"/>
+
             </>
      
             : 

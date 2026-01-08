@@ -1,117 +1,116 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { useForm } from "react-hook-form";
+import ItemCalc from './../elements/ItemCalc';
+import Swal from "sweetalert2";
 
 const BookDetailsPage = () => {
   const { id } = useParams();
-
   const orderModalRef = useRef();
-  const [book, setBook] = useState([]);
+
+  const [book, setBook] = useState({});
+  const [quantity, setQuantity] = useState(1);
 
   const axiosSecure = useAxiosSecure();
 
-  const openOrderModal = (order) => {
-    orderModalRef.current.showModal();
-  };
+  const { register, handleSubmit } = useForm();
 
   useEffect(() => {
-    axiosSecure.get(`/allBooks/${id}`).then((data) => setBook(data.data));
+    axiosSecure.get(`/allBooks/${id}`).then(res => setBook(res.data));
   }, [axiosSecure, id]);
+
+  const handleOrder = (data) => {
+    const totalPrice = quantity * book.price;
+
+    const orderRelatedData = {
+      Name: data.Name,
+      Email: data.Email,
+      Phone: data.Phone,
+      Address: data.Address,
+      unitPrice: book.price,
+      bookName: book.name,
+      author: book.author,
+      quantity,
+      totalPrice,
+      status: "pending"
+    };
+
+    console.log(orderRelatedData);
+    orderModalRef.current.close()
+    Swal.fire({
+  title: "Are you sure?",
+  text: `You have to pay $${totalPrice}` ,
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, Confirm!"
+}).then((result) => {
+  if (result.isConfirmed) {
+    axiosSecure.post('/orders', orderRelatedData)
+    .then(()=>{
+       Swal.fire({
+      title: "Confirmed",
+      text: `Your order has been saved. Please go to the order section and pay $${totalPrice}` ,
+      icon: "success"
+    });
+    })
+  }
+})
+    
+  };
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-14">
-  
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          {/* Left: Book Image */}
-          <div className="flex justify-center">
-            <img
-              src={book.image}
-              alt={book.name}
-              className="w-80 rounded-lg shadow-xl"
-            />
-          </div>
+      <div className="grid md:grid-cols-2 gap-12">
 
-          {/* Right: Book Info */}
-          <div className="space-y-5">
-            <h1 className="text-4xl font-bold">{book.name}</h1>
+        <img src={book.image} className="w-80 mx-auto rounded shadow" />
 
-            <p className="text-lg text-gray-600">
-              by <span className="font-semibold">{book.author}</span>
-            </p>
+        <div className="space-y-4">
+          <h1 className="text-4xl font-bold">{book.name}</h1>
+          <p className="text-gray-600">by {book.author}</p>
+          <p>{book.description}</p>
+          <p className="text-2xl font-bold">${book.price}</p>
 
-            <p className="text-gray-700 leading-relaxed">{book.description}</p>
+<div className="flex flex-wrap gap-4 pt-4">
+          <button
+            className="btn btn-primary px-8"
+            onClick={() => orderModalRef.current.showModal()}
+          >
+            Order Now
+          </button>
 
-            <div className="text-2xl font-bold text-primary">${book.price}</div>
+          <button className="btn btn-outline px-8">Add to Wishlist</button>
+</div>
+          <dialog ref={orderModalRef} className="modal">
+            <div className="modal-box">
+              <p className="py-6 text-center text-xl font-bold"> Fill up this form for order procedure </p>
+              <form onSubmit={handleSubmit(handleOrder)} className="space-y-3">
 
-            {/* Buttons */}
-            <div className="flex flex-wrap gap-4 pt-4">
-              <button
-                onClick={() => openOrderModal()}
-                className="btn btn-primary px-8"
-              >
-                Order Now
-              </button>
+                <input {...register("Name")} className="input w-full" placeholder="Name" />
+                <input {...register("Email")} className="input w-full" placeholder="Email" />
+                <input {...register("Phone")} className="input w-full" placeholder="Phone" />
+                <input {...register("Address")} className="input w-full" placeholder="Address" />
 
-              <button className="btn btn-outline px-8">Add to Wishlist</button>
+                {/* Quantity controller */}
+                <ItemCalc quantity={quantity} setQuantity={setQuantity} />
 
-              <dialog
-                ref={orderModalRef}
-                className="modal modal-bottom sm:modal-middle"
-              >
-                <div className="modal-box">
-                  <p className="py-6 text-center text-xl font-bold">
-                    Fill up this form for order procedure
-                  </p>
-                  {/* form card  */}
-                  <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto">
-                    <div className="card-body">
-                      <fieldset className="fieldset">
-                        <label className="label">Name</label>
-                        <input
-                          type="text"
-                          className="input"
-                          placeholder="Name"
-                        />
+                <p className="font-semibold">
+                  Total: ${(quantity * book.price).toFixed(2)}
+                </p>
 
-                        <label className="label">Email</label>
-                        <input
-                          type="email"
-                          className="input"
-                          placeholder="Email"
-                        />
-                        <label className="label">Phone</label>
-                        <input
-                          type="text"
-                          className="input"
-                          placeholder="Phone"
-                        />
-                        <label className="label">Address</label>
-                        <input
-                          type="text"
-                          className="input"
-                          placeholder="Address"
-                        />
-
-                        <button className="btn btn-neutral mt-4">
-                          Place Order
-                        </button>
-                      </fieldset>
-                    </div>
-                  </div>
-                  <div className="modal-action">
-                    <form method="dialog">
-                      {/* if there is a button in form, it will close the modal */}
-                      <button className="btn">Close</button>
-                    </form>
-                  </div>
-                </div>
-              </dialog>
+                <button className="btn btn-neutral w-full">
+                  Place Order
+                </button>
+              </form>
             </div>
-          </div>
+          </dialog>
         </div>
-
+      </div>
     </div>
   );
 };
+
 
 export default BookDetailsPage;

@@ -14,14 +14,15 @@ const RegisterPage = () => {
   const navigate = useNavigate()
 
   const handleRegister = (data) => {
-    registerUser(data.Email, data.Password)
-      .then((result) => {
-        navigate("/")
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    console.log(data);
+  //   registerUser(data.Email, data.Password)
+  //     .then((result) => {
+  //       navigate("/")
+  //       console.log(result);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
   };
 
   return (
