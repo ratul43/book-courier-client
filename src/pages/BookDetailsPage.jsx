@@ -4,21 +4,24 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import ItemCalc from './../elements/ItemCalc';
 import Swal from "sweetalert2";
+import useTime from './../hooks/useTime';
 
 const BookDetailsPage = () => {
   const { id } = useParams();
   const orderModalRef = useRef();
+  const time = useTime()
 
   const [book, setBook] = useState({});
   const [quantity, setQuantity] = useState(1);
 
   const axiosSecure = useAxiosSecure();
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: {errors} } = useForm();
 
   useEffect(() => {
     axiosSecure.get(`/allBooks/${id}`).then(res => setBook(res.data));
   }, [axiosSecure, id]);
+
 
   const handleOrder = (data) => {
     const totalPrice = quantity * book.price;
@@ -29,14 +32,17 @@ const BookDetailsPage = () => {
       Phone: data.Phone,
       Address: data.Address,
       unitPrice: book.price,
+      bookImg: book.image,
       bookName: book.name,
       author: book.author,
       quantity,
       totalPrice,
-      status: "pending"
+      orderDate: time,
+      status: "pending",
+      paymentStatus: "unpaid"
     };
 
-    console.log(orderRelatedData);
+    
     orderModalRef.current.close()
     Swal.fire({
   title: "Are you sure?",
@@ -88,10 +94,16 @@ const BookDetailsPage = () => {
               <p className="py-6 text-center text-xl font-bold"> Fill up this form for order procedure </p>
               <form onSubmit={handleSubmit(handleOrder)} className="space-y-3">
 
-                <input {...register("Name")} className="input w-full" placeholder="Name" />
-                <input {...register("Email")} className="input w-full" placeholder="Email" />
-                <input {...register("Phone")} className="input w-full" placeholder="Phone" />
-                <input {...register("Address")} className="input w-full" placeholder="Address" />
+                <input {...register("Name", {required: true})} className="input w-full" placeholder="Name" />
+                {errors.Name?.type === "required" && (<p className="text-red-500">Name is required</p>)}
+                <input {...register("Email", {required: true})} className="input w-full" placeholder="Email" />
+          {errors.Email?.type === "required" && (<p className="text-red-500">Email is required</p>)}
+
+                <input {...register("Phone", {required: true})} className="input w-full" placeholder="Phone" />
+           {errors.Phone?.type === "required" && (<p className="text-red-500">Phone number is required</p>)}
+
+                <input {...register("Address", {required: true})} className="input w-full" placeholder="Address" />
+                {errors.Name?.type === "required" && (<p className="text-red-500">Address is required</p>)}
 
                 {/* Quantity controller */}
                 <ItemCalc quantity={quantity} setQuantity={setQuantity} />
@@ -103,7 +115,10 @@ const BookDetailsPage = () => {
                 <button className="btn btn-neutral w-full">
                   Place Order
                 </button>
+
+
               </form>
+                <button onClick={()=>orderModalRef.current.close()} className="btn mt-4">Close</button>
             </div>
           </dialog>
         </div>
