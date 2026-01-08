@@ -13,11 +13,11 @@ const BooksCard = () => {
   }, [axiosSecure]);
 
   return (
-    <div className="grid grid-cols-3">
+    <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-2 grid-cols-1">
       {books.map((book, index) => (
         <div
           key={index}
-          className="card bg-white p-4 sm:p-5 rounded-xl flex flex-col justify-between shadow-md hover:shadow-lg transition-shadow duration-300"
+          className="card p-4 sm:p-5 rounded-xl flex flex-col justify-between shadow-md hover:shadow-lg transition-shadow duration-300"
         >
           <Link to={`/bookDetails/${book._id}`}>
             <img
