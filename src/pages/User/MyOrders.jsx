@@ -29,6 +29,22 @@ const MyOrders = () => {
     });
   };
 
+  
+
+  const handlePayment = async (order) => {
+    const paymentGateWayData = {
+      customerEmail: order.Email,
+      bookName: order?.bookName,
+      bookId: order?._id,
+      totalCost: order?.totalPrice,
+    }
+   const res = await axiosSecure.post('/create-checkout-session', paymentGateWayData)
+   console.log(res.data);
+   window.location.assign(res.data.url) 
+  }
+  
+  
+
   useEffect(() => {
     axiosSecure
       .get(`/orders`)
@@ -37,6 +53,7 @@ const MyOrders = () => {
       })
       .catch((error) => console.error("Error fetching posts:", error));
   }, [axiosSecure, handleCancel]);
+ 
 
   return (
     <div>
@@ -74,7 +91,7 @@ const MyOrders = () => {
                   <td>{order?.orderDate}</td>
                   <td className="font-bold text-amber-500">{order?.status}</td>
                   <td className="space-x-4">
-                    <button className={`btn ${order?.status === 'cancelled' || order?.status === 'paid' ? 'hidden' : 'block'}`}>Pay Now</button>
+<button onClick={()=>handlePayment(order)} className={`btn ${order?.status === 'cancelled' || order?.status === 'paid' ? 'hidden' : 'block'}`}>Pay Now</button>
                     <button
                       onClick={() => handleCancel(order._id)}
                     className={`btn ${order?.status === 'cancelled' || order?.status === 'paid' ? 'hidden' : 'block'}`}

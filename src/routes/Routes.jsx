@@ -9,7 +9,6 @@ import AllBooksPage from './../pages/AllBooksPage';
 import BookDetailsPage from "../pages/BookDetailsPage";
 import MyOrders from "../pages/User/MyOrders";
 import MyProfile from "../pages/User/MyProfile";
-import UpdateProfile from "../pages/User/UpdateProfile";
 import Invoices from "../pages/User/Invoices";
 import AddBookPage from "../pages/Librarian/AddBookPage";
 import MyBooks from "../pages/Librarian/MyBooks";
@@ -19,6 +18,8 @@ import Test from "../test";
 import BooksEdit from "../pages/Librarian/BooksEdit";
 import ManageBooksPage from "../pages/AdminDashboard/ManageBooksPage";
 import MyWishList from "../pages/User/MyWishList";
+import PaymentSuccess from "../pages/Payment/PaymentSuccess";
+import PaymentCancel from "../pages/Payment/PaymentCancel";
 
 export const router = createBrowserRouter([
   {
@@ -51,10 +52,16 @@ export const router = createBrowserRouter([
         path:"/dashboard/my-profile",
         element: <MyProfile></MyProfile>
       },
+
       {
-        path:"/dashboard/my-profile/update",
-        element: <UpdateProfile></UpdateProfile>
+        path: "/dashboard/payment-success",
+        element: <PaymentSuccess></PaymentSuccess>
       },
+      {
+        path: "/dashboard/payment-cancelled",
+        element: <PaymentCancel></PaymentCancel>
+      },
+
       {
         path:"/dashboard/myWishList",
         element: <MyWishList></MyWishList>
