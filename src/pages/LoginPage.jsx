@@ -13,8 +13,8 @@ const LoginPage = () => {
   const handleGoogleSignIn = ()=>{
     signInGoogle()
     .then(result => {
-      navigate("/")
       console.log(result.user);
+      navigate("/")
     })
     .catch(error=>{
       console.log(error.message);

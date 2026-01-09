@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const RegisterPage = () => {
   const {
@@ -9,20 +10,48 @@ const RegisterPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const axiosSecure = useAxiosSecure()
 
-  const { registerUser } = useAuth();
+  const { registerUser, updateUserProfile } = useAuth();
   const navigate = useNavigate()
 
   const handleRegister = (data) => {
-    console.log(data);
-  //   registerUser(data.Email, data.Password)
-  //     .then((result) => {
-  //       navigate("/")
-  //       console.log(result);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
+
+    const profileImg = data.Image[0]
+
+    registerUser(data.Email, data.Password)
+    .then(()=>{
+      
+    })
+     
+      
+     
+      // store the image and get the photo url
+      const formData = new FormData()
+      
+      formData.append('image', profileImg)
+     
+      const image_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key}`
+
+      axiosSecure.post(image_API_URL, formData)
+      .then(res=>{
+        // console.log('after image upload', res.data.data.url);
+
+        // update user profile 
+        const userProfile = {
+          displayName: data.Name,
+          photoURL: res.data.data.url 
+        }
+
+        updateUserProfile(userProfile)
+        .then(()=>{console.log("user profile updated done")
+           navigate("/")
+        }
+       
+      )
+        .catch(error=>console.log(error.message))
+      })
+
   };
 
   return (
@@ -46,17 +75,18 @@ const RegisterPage = () => {
                   {errors.Name?.type === "required" && (
                     <p className="text-red-500">Name is required</p>
                   )}
+                  {/* Email  */}
                   <label className="label">Email</label>
                   <input
                     type="email"
                     className="input"
-                    {...register("Email")}
+                    {...register("Email", {required: true})}
                     placeholder="Email"
                   />
-                  {errors.Email?.type === "required" && (
-                    <p className="text-red-500">Email is required</p>
+                  {errors.Email?.type === "required" && ( <p className="text-red-500">Email is required</p>
                   )}
 
+                  {/* Password  */}
                   <label className="label">Password</label>
                   <input
                     type="password"
@@ -85,13 +115,14 @@ const RegisterPage = () => {
                     </p>
                   )}
 
+                  {/* Image  */}
                   <label className="label">Image</label>
                   <input
                     type="file"
-                    {...register("Image")}
+                    {...register("Image", {required: true})}
                     className="file-input"
                   />
-
+  {errors.Image?.type === "required" && (<p className="text-red-500">Image is required</p>)}
                   <div>
                     <a className="link link-hover">Forgot password?</a>
                   </div>
