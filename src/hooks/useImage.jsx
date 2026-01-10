@@ -1,23 +1,28 @@
-import React from 'react';
-import useAxiosSecure from './useAxiosSecure';
+import useAxiosSecure from "./useAxiosSecure";
 
+const useImage = () => {
+  const axiosSecure = useAxiosSecure();
 
-const useImage = (data) => {
-   
-const profileImg = data.Image[0]
+  const uploadImage = async (data) => {
+    const imageFile = data.Image[0];
 
-const axiosSecure = useAxiosSecure()
+    const formData = new FormData();
+    formData.append("image", imageFile);
 
-// store the image and get the photo url
-      const formData = new FormData()
-      
-      formData.append('image', profileImg)
-     
-      const image_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key}`
+    const image_API_URL = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_image_host_key
+    }`;
 
-    return  axiosSecure.post(image_API_URL, formData)
+    try {
+      const res = await axiosSecure.post(image_API_URL, formData);
+      return res.data.data.url; // ✅ RETURN URL
+    } catch (error) {
+      console.error("Image upload failed:", error);
+      return null;
+    }
+  };
 
-
+  return uploadImage;
 };
 
 export default useImage;
