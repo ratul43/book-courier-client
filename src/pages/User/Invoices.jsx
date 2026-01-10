@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Invoices = () => {
+  const [invoices, setInvoices] = useState([])
+  const axiosSecure = useAxiosSecure()
+
+  useEffect(()=>{
+    axiosSecure.get("/payments")  
+    .then((res)=>{
+      setInvoices(res.data);
+    })
+  }, [axiosSecure])
+
+  console.log(invoices)
+
+
+
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
       
@@ -16,47 +32,27 @@ const Invoices = () => {
               <th>Payment ID</th>
               <th>Book Name</th>
               <th>Amount</th>
-              <th>Date</th>
+              <th>Paid at</th>
               <th>Status</th>
             </tr>
           </thead>
 
           <tbody>
-            {/* Row 1 */}
-            <tr>
-              <td>1</td>
-              <td className="font-mono">PAY-982341</td>
-              <td>Atomic Habits</td>
-              <td className="font-semibold">$14.99</td>
-              <td>Aug 18, 2024</td>
+            
+            {
+              invoices.map((invoice, index)=><tr>
+              <td>{index + 1}</td>
+              <td className="font-mono">{invoice.transactionId}</td>
+              <td>{invoice.parcelName}</td>
+              <td className="font-semibold">${invoice.amount}</td>
+              <td>{invoice.paidAt}</td>
               <td>
-                <span className="badge badge-success">Paid</span>
+                <span className="badge badge-success">{invoice.paymentStatus}</span>
               </td>
-            </tr>
+            </tr>)
+            }
 
-            {/* Row 2 */}
-            <tr>
-              <td>2</td>
-              <td className="font-mono">PAY-124875</td>
-              <td>The Psychology of Money</td>
-              <td className="font-semibold">$12.50</td>
-              <td>Aug 05, 2024</td>
-              <td>
-                <span className="badge badge-success">Paid</span>
-              </td>
-            </tr>
-
-            {/* Row 3 */}
-            <tr>
-              <td>3</td>
-              <td className="font-mono">PAY-774215</td>
-              <td>Rich Dad Poor Dad</td>
-              <td className="font-semibold">$10.99</td>
-              <td>Jul 22, 2024</td>
-              <td>
-                <span className="badge badge-success">Paid</span>
-              </td>
-            </tr>
+          
           </tbody>
         </table>
       </div>
