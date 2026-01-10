@@ -91,7 +91,7 @@ const MyOrders = () => {
                   <td>{order?.orderDate}</td>
                   <td className="font-bold text-amber-500">{order?.status}</td>
                   <td className="space-x-4">
-<button onClick={()=>handlePayment(order)} className={`btn ${order?.status === 'cancelled' || order?.status === 'paid' ? 'hidden' : 'block'}`}>Pay Now</button>
+          <button onClick={()=>handlePayment(order)} className={`btn ${order?.status === 'cancelled' || order?.status === 'paid' ? 'hidden' : 'block'}`}>Pay Now</button>
                     <button
                       onClick={() => handleCancel(order._id)}
                     className={`btn ${order?.status === 'cancelled' || order?.status === 'paid' ? 'hidden' : 'block'}`}

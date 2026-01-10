@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import ItemCalc from './../elements/ItemCalc';
@@ -9,6 +9,7 @@ import useTime from './../hooks/useTime';
 const BookDetailsPage = () => {
   const { id } = useParams();
   const orderModalRef = useRef();
+  const navigate = useNavigate()
   const time = useTime()
 
   const [book, setBook] = useState({});
@@ -61,6 +62,7 @@ const BookDetailsPage = () => {
       text: `Your order has been saved. Please go to the order section and pay $${totalPrice}` ,
       icon: "success"
     });
+    navigate('/dashboard/my-orders')
     })
   }
 })
