@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
+import useAxiosSecure from './../../hooks/useAxiosSecure';
 
 const MyBooks = () => {
+
+  const [books, setBooks] = useState([])
+  const axiosSecure = useAxiosSecure()
+
+
+
+
+
+
+  useEffect(()=>{
+    axiosSecure.get('/allBooks')
+    .then((res)=>{
+      setBooks(res.data)
+    })
+  },[axiosSecure])
+  console.log(books);
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
       
@@ -21,68 +39,33 @@ const MyBooks = () => {
               <th>#</th>
               <th>Book</th>
               <th>Title</th>
+              <th>Price</th>
               <th>Action</th>
             </tr>
           </thead>
 
           <tbody>
             {/* Row 1 */}
-            <tr>
-              <td>1</td>
+            {books.map((book, index)=><tr>
+              <td>{index + 1}</td>
               <td>
                 <img
-                  src="https://images-na.ssl-images-amazon.com/images/I/81bGKUa1e0L.jpg"
-                  alt="Atomic Habits"
+                  src={book.image}
+                  alt={book.name}
                   className="w-16 h-20 object-contain rounded"
                 />
               </td>
-              <td className="font-semibold">Atomic Habits</td>
+              <td className="font-semibold">{book.name}</td>
+              <td className="font-semibold">${book.price}</td>
               <td>
-                <Link to="/dashboard/librarian/added-books/edit" className="btn btn-outline btn-sm">
+                <Link to={`/dashboard/librarian/added-books/edit/${book._id}`} className="btn btn-outline btn-sm">
                   Edit
                 </Link>
               </td>
-            </tr>
+            </tr>)}
+            
 
-            {/* Row 2 */}
-            <tr>
-              <td>2</td>
-              <td>
-                <img
-                  src="https://images-na.ssl-images-amazon.com/images/I/71g2ednj0JL.jpg"
-                  alt="Psychology of Money"
-                  className="w-16 h-20 object-contain rounded"
-                />
-              </td>
-              <td className="font-semibold">
-                The Psychology of Money
-              </td>
-              <td>
-                <button className="btn btn-outline btn-sm">
-                  Edit
-                </button>
-              </td>
-            </tr>
-
-            {/* Row 3 */}
-            <tr>
-              <td>3</td>
-              <td>
-                <img
-                  src="https://images-na.ssl-images-amazon.com/images/I/81bsw6fnUiL.jpg"
-                  alt="Rich Dad Poor Dad"
-                  className="w-16 h-20 object-contain rounded"
-                />
-              </td>
-              <td className="font-semibold">
-                Rich Dad Poor Dad
-              </td>
-              <td>
-                <button className="btn btn-outline btn-sm">
-                  Edit
-                </button>
-              </td>
-            </tr>
+          
           </tbody>
         </table>
       </div>

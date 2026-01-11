@@ -87,7 +87,7 @@ export const router = createBrowserRouter([
         element: <AllUsers></AllUsers>
       },
       {
-        path:"/dashboard/librarian/added-books/edit",
+        path:"/dashboard/librarian/added-books/edit/:id",
         element: <BooksEdit></BooksEdit>
       },
       {

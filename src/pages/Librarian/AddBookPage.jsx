@@ -24,6 +24,7 @@ const AddBookPage = () => {
       description: data.description,
       price: data.Price,
       image: imgURL,
+      publishStatus: data.Status 
     };
 
     await axiosSecure.post("/librarian/bookAdd", addBookData).then((res) => {
