@@ -1,6 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const OrdersPage = () => {
+
+  const axiosSecure = useAxiosSecure()
+  const [orders, setOrders] = useState([])
+
+
+
+  useEffect(()=>{
+    axiosSecure.get("/orders")
+    .then((res)=>{
+      setOrders(res.data)
+    })
+  }, [axiosSecure])
+
+  // console.log(orders);
+
+  const handleStatusChange = (id, status) =>{
+    // console.log(id, statusCurrentValue)
+    setOrders(prev => 
+      prev.map(order => order._id === id 
+        ? {...order, status}
+         : order )
+    ) 
+  }
+
+  const handleUpdate = async (id, status) => {
+    await axiosSecure.patch(`/orders/${id}`, {status})
+    Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: `Parcel has been ${status}` ,
+  showConfirmButton: false,
+  timer: 1500
+});
+  }
+
+ 
+
+
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
 
@@ -29,90 +70,45 @@ const OrdersPage = () => {
           </thead>
 
           <tbody>
-            {/* Order 1 */}
-            <tr>
-              <td>1</td>
+            
+            {orders.map((order, index)=><tr>
+              <td>{index + 1}</td>
               <td>
                 <img
-                  src="https://images-na.ssl-images-amazon.com/images/I/81bGKUa1e0L.jpg"
-                  alt="Atomic Habits"
+                  src={order.bookImg}
+                  alt={order.bookName}
                   className="w-14 h-20 object-contain rounded"
                 />
               </td>
-              <td className="font-semibold">Atomic Habits</td>
-              <td className="font-mono">ORD-10245</td>
-              <td>John Doe</td>
-              <td>$14.99</td>
+              <td className="font-semibold">{order.bookName}</td>
+              <td className="font-mono">{order.trackingId}</td>
+              <td>{order.Name}</td>
+              <td>${order.totalPrice}</td>
               <td>
-                <select className="select select-bordered select-sm">
-                  <option>Pending</option>
-                  <option>Shipped</option>
-                  <option>Delivered</option>
+                <select className="select select-bordered select-sm w-20"
+                value={order.status}
+                onChange={(e)=>handleStatusChange(order._id, e.target.value)}
+                >
+                  <option>pending</option>
+                  <option>paid</option>
+                  <option>shipped</option>
+                  <option>delivered</option>
                 </select>
               </td>
               <td>
+                <div className="flex gap-2">
+                   <button  onClick={()=> handleUpdate(order._id, order.status)}  className="btn btn-accent btn-sm">
+                  Update
+                </button>
                 <button className="btn btn-error btn-sm">
                   Cancel
                 </button>
+                </div>
+               
+               
               </td>
-            </tr>
+            </tr>)}
 
-            {/* Order 2 */}
-            <tr>
-              <td>2</td>
-              <td>
-                <img
-                  src="https://images-na.ssl-images-amazon.com/images/I/71g2ednj0JL.jpg"
-                  alt="Psychology of Money"
-                  className="w-14 h-20 object-contain rounded"
-                />
-              </td>
-              <td className="font-semibold">
-                The Psychology of Money
-              </td>
-              <td className="font-mono">ORD-87421</td>
-              <td>Sarah Lee</td>
-              <td>$12.50</td>
-              <td>
-                <select className="select select-bordered select-sm">
-                  <option>Shipped</option>
-                  <option>Delivered</option>
-                </select>
-              </td>
-              <td>
-                <button className="btn btn-error btn-sm">
-                  Cancel
-                </button>
-              </td>
-            </tr>
-
-            {/* Order 3 */}
-            <tr>
-              <td>3</td>
-              <td>
-                <img
-                  src="https://images-na.ssl-images-amazon.com/images/I/81bsw6fnUiL.jpg"
-                  alt="Rich Dad Poor Dad"
-                  className="w-14 h-20 object-contain rounded"
-                />
-              </td>
-              <td className="font-semibold">
-                Rich Dad Poor Dad
-              </td>
-              <td className="font-mono">ORD-55498</td>
-              <td>Michael Smith</td>
-              <td>$10.99</td>
-              <td>
-                <select className="select select-bordered select-sm">
-                  <option>Delivered</option>
-                </select>
-              </td>
-              <td>
-                <button className="btn btn-error btn-sm" disabled>
-                  Cancel
-                </button>
-              </td>
-            </tr>
 
           </tbody>
         </table>

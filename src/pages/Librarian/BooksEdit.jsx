@@ -64,7 +64,21 @@ const handleUpdatedData = async (data) => {
     updatedBook
   );
 
-  console.log(res.data);
+  if(res.data?.modifiedCount > 0){
+    
+    setBookData(prev => ({
+      ...prev,
+      ...updatedBook
+    }))
+  }
+  
+  reset({
+    bookName: updatedBook.name,
+    authorName: updatedBook.author, 
+    price: updatedBook.price,
+      description: updatedBook.description,
+      publishStatus: updatedBook.publishStatus
+  })
 };
 
 

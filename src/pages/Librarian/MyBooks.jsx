@@ -18,7 +18,6 @@ const MyBooks = () => {
       setBooks(res.data)
     })
   },[axiosSecure])
-  console.log(books);
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
@@ -46,7 +45,7 @@ const MyBooks = () => {
 
           <tbody>
             {/* Row 1 */}
-            {books.map((book, index)=><tr>
+            {books.map((book, index)=><tr key={index}>
               <td>{index + 1}</td>
               <td>
                 <img
