@@ -22,30 +22,39 @@ const ManageBooksPage = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes",
-    }).then((result)=>{
-      if(result.isConfirmed) {
-         axiosSecure.patch(`/books/publish/${id}`, {
-    publishStatus: newStatus,
-  }).then(()=>{
-setBooks((prev) =>
-      prev.map((book) =>
-        book._id === id ? { ...book, publishStatus: newStatus } : book
-      )
-    );
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .patch(`/books/publish/${id}`, {
+            publishStatus: newStatus,
+          })
+          .then(() => {
+            setBooks((prev) =>
+              prev.map((book) =>
+                book._id === id ? { ...book, publishStatus: newStatus } : book
+              )
+            );
 
-    Swal.fire({
-      title: "Success!",
-      text: `Book has been ${newStatus}` ,
-      icon: "success"
-    });
-
-  })
-        
+            Swal.fire({
+              title: "Success!",
+              text: `Book has been ${newStatus}`,
+              icon: "success",
+            });
+          });
       }
-      
-    })
+    });
+  };
 
-    
+  const handleDelete = async (id) => {
+    await axiosSecure.delete(`/books/delete/${id}`).then(() => {
+      setBooks((prev) => prev.filter((book) => book._id !== id));
+
+      Swal.fire({
+        title: "Deleted!",
+        text: "Book has been deleted.",
+        icon: "success",
+      });
+    });
   };
 
   return (
@@ -94,9 +103,12 @@ setBooks((prev) =>
                   />
                 </td>
                 <td>
-                  <div className="flex gap-2">
-                    <button className="btn btn-error btn-sm">Delete</button>
-                  </div>
+                  <button
+                    onClick={() => handleDelete(book._id)}
+                    className="btn btn-error btn-sm"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
