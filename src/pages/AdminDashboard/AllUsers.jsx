@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
+  const [users, setUsers] = useState([])
+
+  const axiosSecure = useAxiosSecure()
+
+  useEffect( ()=>{
+    axiosSecure.get("/users")
+    .then((res)=>{
+      setUsers(res.data)
+    })
+  }, [axiosSecure])
+
+  console.log(users);
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
 
@@ -26,86 +39,38 @@ const AllUsers = () => {
           </thead>
 
           <tbody>
-            {/* User 1 */}
-            <tr>
-              <td>1</td>
+            
+            {users.map((user, index)=><tr>
+              <td>{index + 1}</td>
               <td className="flex items-center gap-3">
                 <img
-                  src="https://i.pravatar.cc/60?img=11"
+                  src={user?.photo}
                   alt="User"
                   className="w-12 h-12 rounded-full"
                 />
-                <span className="font-semibold">John Doe</span>
+                <span className="font-semibold">{user?.name}</span>
               </td>
-              <td>john.doe@email.com</td>
+              <td>{user?.email}</td>
               <td>
                 <span className="badge badge-outline">
-                  Customer
+                  {user?.role}
                 </span>
               </td>
-              <td className="flex gap-2">
-                <button className="btn btn-sm btn-outline">
+              <td>
+                <div className="flex gap-2">
+                  <button className="btn btn-sm btn-outline">
                   Make Librarian
                 </button>
                 <button className="btn btn-sm btn-primary">
                   Make Admin
                 </button>
+                </div>
+                
               </td>
-            </tr>
+            </tr>)}
 
-            {/* User 2 */}
-            <tr>
-              <td>2</td>
-              <td className="flex items-center gap-3">
-                <img
-                  src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
-                  alt="User"
-                  className="w-12 h-12 rounded-full"
-                />
-                <span className="font-semibold">David</span>
-              </td>
-              <td>sarah@email.com</td>
-              <td>
-                <span className="badge badge-secondary">
-                  Librarian
-                </span>
-              </td>
-              <td className="flex gap-2">
-                <button className="btn btn-sm btn-outline" disabled>
-                  Make Librarian
-                </button>
-                <button className="btn btn-sm btn-primary">
-                  Make Admin
-                </button>
-              </td>
-            </tr>
+            
 
-            {/* User 3 */}
-            <tr>
-              <td>3</td>
-              <td className="flex items-center gap-3">
-                <img
-                  src="https://i.pravatar.cc/60?img=33"
-                  alt="User"
-                  className="w-12 h-12 rounded-full"
-                />
-                <span className="font-semibold">Admin User</span>
-              </td>
-              <td>admin@email.com</td>
-              <td>
-                <span className="badge badge-primary">
-                  Admin
-                </span>
-              </td>
-              <td className="flex gap-2">
-                <button className="btn btn-sm btn-outline" disabled>
-                  Make Librarian
-                </button>
-                <button className="btn btn-sm btn-primary" disabled>
-                  Make Admin
-                </button>
-              </td>
-            </tr>
 
           </tbody>
         </table>

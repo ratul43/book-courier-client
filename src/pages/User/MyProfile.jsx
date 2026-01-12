@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import useAuth from "./../../hooks/useAuth";
 import { Link } from "react-router";
 import { useState } from "react";
@@ -10,13 +10,19 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 const MyProfile = () => {
   const { user, updateUserProfile } = useAuth();
   const axiosSecure = useAxiosSecure()
-  
+ 
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm();
+
+  useEffect(()=>{
+    reset({
+      name: user?.displayName
+    })
+  }, [reset, user?.displayName])
 
   const uploadImage = useImage();
 
@@ -41,7 +47,7 @@ const MyProfile = () => {
     await updateUserProfile(updatedProfile)
     await axiosSecure.patch(`/users?email=${user.email}`, updateProfileForDataBase)
     .then(()=>{
-
+      reset()
         toast.success("Profile updated")
       })
   };
