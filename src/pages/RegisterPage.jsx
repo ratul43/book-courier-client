@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
   const {
@@ -19,7 +20,11 @@ const RegisterPage = () => {
   const handleRegister = (data) => {
     const profileImg = data.Image[0];
 
-    registerUser(data.Email, data.Password).then(() => {});
+    registerUser(data.Email, data.Password)
+      .then(() => {})
+      .catch((error) => {
+        toast.error(error.message.slice(10));
+      });
 
     // store the image and get the photo url
     const formData = new FormData();
