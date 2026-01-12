@@ -71,17 +71,6 @@ const OrdersPage = () => {
   }
 });
 
-
-
-
-    // await axiosSecure.patch(`/orders/librarian/${id}`)
-    // .then(()=>{
-    //   setOrders(prev => 
-    //   prev.map(order => order._id === id 
-    //     ? {...order, status: 'cancelled'}
-    //      : order )
-    // ) 
-    // })
   }
 
 
