@@ -38,7 +38,51 @@ const OrdersPage = () => {
 });
   }
 
- 
+  const handleCancel = async (id) => {
+
+    Swal.fire({
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, cancel it!"
+}).then((result) => {
+  if (result.isConfirmed) {
+
+ axiosSecure.patch(`/orders/librarian/${id}`)
+ .then(()=>{
+    setOrders(prev => 
+      prev.map(order => order._id === id 
+        ? {...order, status: 'cancelled'}
+         : order )
+    )
+      Swal.fire({
+      title: "Cancelled!",
+      text: "Order has been cancelled.",
+      icon: "success"
+
+    })
+ })
+
+    
+    
+  }
+});
+
+
+
+
+    // await axiosSecure.patch(`/orders/librarian/${id}`)
+    // .then(()=>{
+    //   setOrders(prev => 
+    //   prev.map(order => order._id === id 
+    //     ? {...order, status: 'cancelled'}
+    //      : order )
+    // ) 
+    // })
+  }
 
 
 
@@ -84,7 +128,12 @@ const OrdersPage = () => {
               <td className="font-mono">{order.trackingId}</td>
               <td>{order.Name}</td>
               <td>${order.totalPrice}</td>
-              <td>
+              {
+              order?.status === 'cancelled' ? 
+                <td> Cancelled </td>
+                :
+                <>
+                <td>
                 <select className="select select-bordered select-sm w-20"
                 value={order.status}
                 onChange={(e)=>handleStatusChange(order._id, e.target.value)}
@@ -100,13 +149,17 @@ const OrdersPage = () => {
                    <button  onClick={()=> handleUpdate(order._id, order.status)}  className="btn btn-accent btn-sm">
                   Update
                 </button>
-                <button className="btn btn-error btn-sm">
+                <button onClick={()=>handleCancel(order._id, order.status)} className="btn btn-error btn-sm">
                   Cancel
                 </button>
                 </div>
                
                
               </td>
+                </>
+                
+            }
+              
             </tr>)}
 
 
