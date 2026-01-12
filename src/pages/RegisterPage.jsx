@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const RegisterPage = () => {
   const {
@@ -10,48 +11,54 @@ const RegisterPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
 
   const { registerUser, updateUserProfile } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleRegister = (data) => {
+    const profileImg = data.Image[0];
 
-    const profileImg = data.Image[0]
+    registerUser(data.Email, data.Password).then(() => {});
 
-    registerUser(data.Email, data.Password)
-    .then(()=>{
-      
-    })
-     
-      
-     
-      // store the image and get the photo url
-      const formData = new FormData()
-      
-      formData.append('image', profileImg)
-     
-      const image_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_host_key}`
+    // store the image and get the photo url
+    const formData = new FormData();
 
-      axiosSecure.post(image_API_URL, formData)
-      .then(res=>{
-        // console.log('after image upload', res.data.data.url);
+    formData.append("image", profileImg);
 
-        // update user profile 
-        const userProfile = {
-          displayName: data.Name,
-          photoURL: res.data.data.url 
-        }
+    const image_API_URL = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_image_host_key
+    }`;
 
-        updateUserProfile(userProfile)
-        .then(()=>{console.log("user profile updated done")
-           navigate("/")
-        }
-       
-      )
-        .catch(error=>console.log(error.message))
-      })
+    axiosSecure.post(image_API_URL, formData).then((res) => {
+      // console.log('after image upload', res.data.data.url);
 
+      // update user profile
+      const userProfile = {
+        displayName: data.Name,
+        photoURL: res.data.data.url,
+      };
+      const profileData = {
+        name: data.Name,
+        email: data.Email,
+        photo: res.data.data.url,
+        role: "customer",
+      };
+
+      updateUserProfile(userProfile)
+        .then(() => {
+          axiosSecure.post("/users", profileData);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User registration successful",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/");
+        })
+        .catch((error) => console.log(error.message));
+    });
   };
 
   return (
@@ -80,10 +87,11 @@ const RegisterPage = () => {
                   <input
                     type="email"
                     className="input"
-                    {...register("Email", {required: true})}
+                    {...register("Email", { required: true })}
                     placeholder="Email"
                   />
-                  {errors.Email?.type === "required" && ( <p className="text-red-500">Email is required</p>
+                  {errors.Email?.type === "required" && (
+                    <p className="text-red-500">Email is required</p>
                   )}
 
                   {/* Password  */}
@@ -119,10 +127,12 @@ const RegisterPage = () => {
                   <label className="label">Image</label>
                   <input
                     type="file"
-                    {...register("Image", {required: true})}
+                    {...register("Image", { required: true })}
                     className="file-input"
                   />
-  {errors.Image?.type === "required" && (<p className="text-red-500">Image is required</p>)}
+                  {errors.Image?.type === "required" && (
+                    <p className="text-red-500">Image is required</p>
+                  )}
                   <div>
                     <a className="link link-hover">Forgot password?</a>
                   </div>
