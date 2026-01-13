@@ -68,8 +68,19 @@ const BookDetailsPage = () => {
     });
   };
 
-  const handleWishList = async (data) => {
-    await axiosSecure.post("/allBooks/wishlist", data).then((res) => {
+  const handleWishList = async (book) => {
+
+    const wishListData = {
+      Name: book.name,
+      bookId: book._id,
+      bookImg: book.image,
+      bookName: book.name,
+      author: book.author,
+      price: book.price 
+    };
+    
+    
+    await axiosSecure.post("/allBooks/wishlist", wishListData).then((res) => {
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -100,7 +111,7 @@ const BookDetailsPage = () => {
             </button>
 
             <button
-              onClick={() => handleWishList(book)}
+              onClick={()=>handleWishList(book)}
               className="btn btn-outline px-8"
             >
               Add to Wishlist
