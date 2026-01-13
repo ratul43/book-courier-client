@@ -18,53 +18,62 @@ const RegisterPage = () => {
   const navigate = useNavigate();
 
   const handleRegister = (data) => {
-    const profileImg = data.Image[0];
+  // Set default image URL
+  const defaultImage = "https://www.svgrepo.com/show/452030/avatar-default.svg";
+  
+  registerUser(data.Email, data.Password)
+    .then(() => {
+      // Check if image exists
+      if (data.Image && data.Image[0]) {
+        const profileImg = data.Image[0];
+        const formData = new FormData();
+        formData.append("image", profileImg);
 
-    registerUser(data.Email, data.Password)
-      .then(() => {})
-      .catch((error) => {
-        toast.error(error.message.slice(10));
-      });
+        const image_API_URL = `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_image_host_key
+        }`;
 
-    // store the image and get the photo url
-    const formData = new FormData();
-
-    formData.append("image", profileImg);
-
-    const image_API_URL = `https://api.imgbb.com/1/upload?key=${
-      import.meta.env.VITE_image_host_key
-    }`;
-
-    axiosSecure.post(image_API_URL, formData).then((res) => {
-      // console.log('after image upload', res.data.data.url);
-
-      // update user profile
-      const userProfile = {
-        displayName: data.Name,
-        photoURL: res.data.data.url,
-      };
-      const profileData = {
-        name: data.Name,
-        email: data.Email,
-        photo: res.data.data.url,
-        role: "customer",
-      };
-
-      updateUserProfile(userProfile)
-        .then(() => {
-          axiosSecure.post("/users", profileData);
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "User registration successful",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          navigate("/");
-        })
-        .catch((error) => console.log(error.message));
+        axiosSecure.post(image_API_URL, formData).then((res) => {
+          // Use uploaded image
+          completeRegistration(data, res.data.data.url);
+        });
+      } else {
+        // Use default image
+        completeRegistration(data, defaultImage);
+      }
+    })
+    .catch((error) => {
+      toast.error(error.message.slice(10));
     });
+};
+
+// Helper function to complete registration
+const completeRegistration = (data, photoURL) => {
+  const userProfile = {
+    displayName: data.Name,
+    photoURL: photoURL,
   };
+  const profileData = {
+    name: data.Name,
+    email: data.Email,
+    photo: photoURL,
+    role: "customer",
+  };
+
+  updateUserProfile(userProfile)
+    .then(() => {
+      axiosSecure.post("/users", profileData);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "User registration successful",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/");
+    })
+    .catch((error) => console.log(error.message));
+};
 
   return (
     <div>
@@ -132,12 +141,10 @@ const RegisterPage = () => {
                   <label className="label">Image</label>
                   <input
                     type="file"
-                    {...register("Image", { required: true })}
+                    {...register("Image")}
                     className="file-input"
                   />
-                  {errors.Image?.type === "required" && (
-                    <p className="text-red-500">Image is required</p>
-                  )}
+                 
                   <div>
                     <a className="link link-hover">Forgot password?</a>
                   </div>
