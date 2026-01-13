@@ -29,6 +29,7 @@ const BookDetailsPage = () => {
 
     const orderRelatedData = {
       Name: data.Name,
+      bookId: id, 
       Email: data.Email,
       Phone: data.Phone,
       Address: data.Address,
