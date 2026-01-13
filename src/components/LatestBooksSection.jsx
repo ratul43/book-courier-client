@@ -5,12 +5,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import useAxiosSecure from './../hooks/useAxiosSecure';
+import { Link } from "react-router";
 
 const LatestBooksSection = () => {
   const [latestBooks, setLatestBooks] = useState([]);
   const axiosSecure = useAxiosSecure()
   useEffect(() => {
-    axiosSecure.get("/latestBooks")
+    axiosSecure.get("/allBooks/published")
     .then((res)=>{
       setLatestBooks(res.data)
     })
@@ -47,9 +48,9 @@ const LatestBooksSection = () => {
       {latestBook.shortDescription}
     </p>
     <div className="mt-auto">
-      <button className="btn btn-primary btn-sm w-fit">
+      <Link to={`/bookDetails/${latestBook._id}`} className="btn btn-primary btn-sm w-fit">
         View Details
-      </button>
+      </Link>
     </div>
   </div>
 </div>

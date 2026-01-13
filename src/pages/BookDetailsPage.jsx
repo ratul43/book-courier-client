@@ -4,6 +4,8 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import ItemCalc from "./../elements/ItemCalc";
 import Swal from "sweetalert2";
+import RatingCard from "../elements/RatingCard";
+import RatingReviewForm from "../elements/RatingReviewForm";
 
 const BookDetailsPage = () => {
   const { id } = useParams();
@@ -178,6 +180,16 @@ const BookDetailsPage = () => {
           </dialog>
         </div>
       </div>
+
+
+          <RatingReviewForm></RatingReviewForm>
+
+
+           <RatingCard></RatingCard>     
+           
+
+
+      
     </div>
   );
 };
