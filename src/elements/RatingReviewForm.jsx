@@ -20,12 +20,12 @@ const RatingReviewForm = () => {
           <div>
             <div>Dio Lupa</div>
             <div className="text-xs uppercase font-semibold opacity-60">
-             <input type="text" placeholder='write a review' className="input w-full input-xl mt-1" />
+             <input type="text" placeholder='Write a review' className="input w-full input-md mt-1" />
 
             </div>
           </div>
           
-          <button>
+          <button className='mt-4'>
             <div className="rating">
 <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="1 star" />
   <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="2 star" defaultChecked />
@@ -36,7 +36,7 @@ const RatingReviewForm = () => {
 
           </button>
 
-          <button> <Link><IoSend size={20}/></Link> </button>
+          <button className='mt-4'> <Link><IoSend size={20}/></Link> </button>
       
         </li>
            
