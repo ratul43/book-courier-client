@@ -3,13 +3,12 @@ import { Link } from "react-router";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const BooksCard = () => {
-  const axiosSecure = useAxiosSecure(); 
+  const axiosSecure = useAxiosSecure();
 
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    axiosSecure.get("/allBooks")
-    .then((data)=>setBooks(data.data))
+    axiosSecure.get("/allBooks/published").then((data) => setBooks(data.data));
   }, [axiosSecure]);
 
   return (
@@ -41,7 +40,10 @@ const BooksCard = () => {
             </div>
           </div>
 
-          <Link to={`/bookDetails/${book._id}`} className="btn btn-primary p-2 rounded-xl text-white font-semibold w-full sm:w-auto">
+          <Link
+            to={`/bookDetails/${book._id}`}
+            className="btn btn-primary p-2 rounded-xl text-white font-semibold w-full sm:w-auto"
+          >
             Details
           </Link>
         </div>

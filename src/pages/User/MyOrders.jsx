@@ -19,7 +19,6 @@ const MyOrders = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.patch(`/orders/cancel/${id}`).then(() => {
-
           Swal.fire({
             title: "Cancelled!",
             text: "Your order has been cancelled.",
@@ -30,21 +29,20 @@ const MyOrders = () => {
     });
   };
 
-  
-
   const handlePayment = async (order) => {
     const paymentGateWayData = {
       customerEmail: order.Email,
       bookName: order?.bookName,
       bookId: order?._id,
       totalCost: order?.totalPrice,
-    }
-   const res = await axiosSecure.post('/create-checkout-session', paymentGateWayData)
-   console.log(res.data);
-   window.location.assign(res.data.url) 
-  }
-  
-  
+    };
+    const res = await axiosSecure.post(
+      "/create-checkout-session",
+      paymentGateWayData
+    );
+    console.log(res.data);
+    window.location.assign(res.data.url);
+  };
 
   useEffect(() => {
     axiosSecure
@@ -54,7 +52,6 @@ const MyOrders = () => {
       })
       .catch((error) => console.error("Error fetching posts:", error));
   }, [axiosSecure, handleCancel]);
- 
 
   return (
     <div>
@@ -92,32 +89,56 @@ const MyOrders = () => {
                   <td>${order?.totalPrice}</td>
                   <td>{order?.orderDate}</td>
                   <td>
-<div
-  className={`font-bold ${
-    order?.status === "paid"
-      ? "text-green-500"
-      : order?.status === "shipped"
-      ? "text-accent"
-      : order?.status === "delivered"
-      ? "badge badge-success"
-      : "text-red-500"
-  }`}
->
-  {order?.status}
-</div>
+                    <div
+                      className={`font-bold ${
+                        order?.status === "paid"
+                          ? "text-green-500"
+                          : order?.status === "shipped"
+                          ? "text-accent"
+                          : order?.status === "delivered"
+                          ? "badge badge-success"
+                          : "text-red-500"
+                      }`}
+                    >
+                      {order?.status}
+                    </div>
                   </td>
                   <td>
-                    <div className={`font-bold badge ${order?.paymentStatus === "paid" ? ' badge-success' : 'badge-warning' }`}>{order?.paymentStatus}</div>
+                    <div
+                      className={`font-bold badge ${
+                        order?.paymentStatus === "paid"
+                          ? " badge-success"
+                          : "badge-warning"
+                      }`}
+                    >
+                      {order?.paymentStatus}
+                    </div>
                   </td>
 
-                  <td className="space-x-4">
-          <button onClick={()=>handlePayment(order)} className={`btn ${order?.status === 'cancelled' || order?.status === 'paid' ? 'hidden' : 'block'}`}>Pay Now</button>
-                    <button
-                      onClick={() => handleCancel(order._id)}
-                    className={`btn ${order?.status === 'cancelled' || order?.status === 'paid' ? 'hidden' : 'block'}`}
-                    >
-                      Cancel
-                    </button>
+                  <td>
+                    <div className="space-y-2">
+                      <button
+                        onClick={() => handlePayment(order)}
+                        className={`btn ${
+       order?.paymentStatus === "paid" || order?.status === "cancelled" ? "hidden"
+                          :
+                            "block"
+                        }`}
+                      >
+                        Pay Now
+                      </button>
+                      <button
+                        onClick={() => handleCancel(order._id)}
+                        className={`btn ${
+                          order?.status === "cancelled" ||
+                          order?.paymentStatus === "paid"
+                            ? "hidden"
+                            : "block"
+                        }`}
+                      >
+                        Cancel
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
