@@ -33,6 +33,7 @@ const Invoices = () => {
               <th>Book Name</th>
               <th>Amount</th>
               <th>Paid at</th>
+              <th>Tracking ID</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -40,14 +41,19 @@ const Invoices = () => {
           <tbody>
             
             {
-              invoices.map((invoice, index)=><tr>
+              invoices.map((invoice, index)=><tr key={index}>
               <td>{index + 1}</td>
               <td className="font-mono">{invoice.transactionId}</td>
               <td>{invoice.parcelName}</td>
               <td className="font-semibold">${invoice.amount}</td>
               <td>{invoice.paidAt}</td>
+              <td>{invoice.trackingId}</td>
               <td>
                 <span className="badge badge-success">{invoice.paymentStatus}</span>
+              </td>
+              <td>
+                <button className="btn">View</button>
+              
               </td>
             </tr>)
             }

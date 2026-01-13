@@ -24,7 +24,8 @@ const AddBookPage = () => {
       description: data.description,
       price: data.Price,
       image: imgURL,
-      publishStatus: data.Status 
+      publishStatus: data.Status,
+      addedOn: new Date()
     };
 
     await axiosSecure.post("/librarian/bookAdd", addBookData).then((res) => {
@@ -72,8 +73,8 @@ const AddBookPage = () => {
                 className="select"
               >
                 <option></option>
-                <option>Published</option>
-                <option>Unpublished</option>
+                <option value="published">Published</option>
+                <option value="unpublished">Unpublished</option>
               </select>
               {errors.Status?.type === "required" && (
                 <p className="text-red-500">Status is required</p>

@@ -19,6 +19,7 @@ const MyOrders = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.patch(`/orders/cancel/${id}`).then(() => {
+
           Swal.fire({
             title: "Cancelled!",
             text: "Your order has been cancelled.",
@@ -71,6 +72,7 @@ const MyOrders = () => {
                 <th>Total</th>
                 <th>Order Date</th>
                 <th>Status</th>
+                <th>Payment Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -90,6 +92,7 @@ const MyOrders = () => {
                   <td>${order?.totalPrice}</td>
                   <td>{order?.orderDate}</td>
                   <td className="font-bold text-amber-500">{order?.status}</td>
+                  <td className="font-bold text-amber-500">{order?.paymentStatus}</td>
                   <td className="space-x-4">
           <button onClick={()=>handlePayment(order)} className={`btn ${order?.status === 'cancelled' || order?.status === 'paid' ? 'hidden' : 'block'}`}>Pay Now</button>
                     <button

@@ -4,13 +4,12 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import ItemCalc from './../elements/ItemCalc';
 import Swal from "sweetalert2";
-import useTime from './../hooks/useTime';
 
 const BookDetailsPage = () => {
   const { id } = useParams();
   const orderModalRef = useRef();
   const navigate = useNavigate()
-  const time = useTime()
+
 
   const [book, setBook] = useState({});
   const [quantity, setQuantity] = useState(1);
@@ -39,7 +38,7 @@ const BookDetailsPage = () => {
       author: book.author,
       quantity,
       totalPrice,
-      orderDate: time,
+      orderDate: new Date(),
       status: "pending",
       paymentStatus: "unpaid"
     };

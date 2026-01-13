@@ -4,18 +4,17 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import useAxiosSecure from './../hooks/useAxiosSecure';
 
 const LatestBooksSection = () => {
   const [latestBooks, setLatestBooks] = useState([]);
+  const axiosSecure = useAxiosSecure()
   useEffect(() => {
-    fetch("latestBooks.json")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setLatestBooks(data);
-      });
-  }, []);
+    axiosSecure.get("/latestBooks")
+    .then((res)=>{
+      setLatestBooks(res.data)
+    })
+  }, [axiosSecure]);
 
   return (
     <section className="py-8 px-4">
