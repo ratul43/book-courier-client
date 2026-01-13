@@ -12,9 +12,6 @@ const Invoices = () => {
     })
   }, [axiosSecure])
 
-  console.log(invoices)
-
-
 
 
   return (
@@ -51,10 +48,7 @@ const Invoices = () => {
               <td>
                 <span className="badge badge-success">{invoice.paymentStatus}</span>
               </td>
-              <td>
-                <button className="btn">View</button>
-              
-              </td>
+             
             </tr>)
             }
 

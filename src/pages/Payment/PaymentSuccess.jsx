@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
@@ -19,6 +20,11 @@ const PaymentSuccess = () => {
             transactionId: res.data.transactionId,
             trackingId: res.data.trackingId,
           });
+          Swal.fire({
+      title: "Success!",
+      text: "You can go my orders page to show your order status",
+      icon: "success"
+    });
         });
     }
   }, [sessionId, axiosSecure]);

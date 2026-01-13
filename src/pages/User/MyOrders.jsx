@@ -91,8 +91,25 @@ const MyOrders = () => {
                   <td>{order?.quantity}</td>
                   <td>${order?.totalPrice}</td>
                   <td>{order?.orderDate}</td>
-                  <td className="font-bold text-amber-500">{order?.status}</td>
-                  <td className="font-bold text-amber-500">{order?.paymentStatus}</td>
+                  <td>
+<div
+  className={`font-bold ${
+    order?.status === "paid"
+      ? "text-green-500"
+      : order?.status === "shipped"
+      ? "text-accent"
+      : order?.status === "delivered"
+      ? "badge badge-success"
+      : "text-red-500"
+  }`}
+>
+  {order?.status}
+</div>
+                  </td>
+                  <td>
+                    <div className={`font-bold badge ${order?.paymentStatus === "paid" ? ' badge-success' : 'badge-warning' }`}>{order?.paymentStatus}</div>
+                  </td>
+
                   <td className="space-x-4">
           <button onClick={()=>handlePayment(order)} className={`btn ${order?.status === 'cancelled' || order?.status === 'paid' ? 'hidden' : 'block'}`}>Pay Now</button>
                     <button
