@@ -20,12 +20,8 @@ const AllBooksPage = () => {
 
     const handleSearch = (e) => {
       setSearchText(e.target.value)
+      
     }
-
-
-
-
-
 
   return (
     <div className="space-y-4 mt-4">
