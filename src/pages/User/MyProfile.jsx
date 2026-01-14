@@ -44,11 +44,23 @@ const MyProfile = () => {
       name: data.name, 
       ...(imageURL && { photo: imageURL }), // conditional property
     }
+
+    console.log(data.name);
+    const updateProfileForReviewSection = {
+      userName: data.name || "Annonymous",
+   ...(imageURL && { userPhoto: imageURL }), // conditional property
+
+    }
     await updateUserProfile(updatedProfile)
     await axiosSecure.patch(`/users?email=${user.email}`, updateProfileForDataBase)
     .then(()=>{
       reset()
         toast.success("Profile updated")
+      })
+      console.log(user.email);
+      await axiosSecure.patch(`/comment/user/update?email=${user.email}`, updateProfileForReviewSection)
+      .then((res)=>{
+        console.log(res.data);
       })
   };
 

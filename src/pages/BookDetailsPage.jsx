@@ -14,7 +14,7 @@ const BookDetailsPage = () => {
 
   const [book, setBook] = useState({});
   const [quantity, setQuantity] = useState(1);
-
+  const [reviews, setReviews] = useState([])
   const axiosSecure = useAxiosSecure();
 
   const {
@@ -25,7 +25,15 @@ const BookDetailsPage = () => {
 
   useEffect(() => {
     axiosSecure.get(`/allBooks/${id}`).then((res) => setBook(res.data));
-  }, [axiosSecure, id]);
+  },
+  
+  [axiosSecure, id]);
+
+  useEffect(()=>{
+    axiosSecure.get(`/reviews?bookId=${id}`)
+    .then((res)=>{setReviews(res.data)})
+  },[axiosSecure, id])
+
 
   const handleOrder = (data) => {
     const totalPrice = quantity * book.price;
@@ -182,10 +190,10 @@ const BookDetailsPage = () => {
       </div>
 
 
-          <RatingReviewForm></RatingReviewForm>
+          <RatingReviewForm name={book.name} id={id} setReviews={setReviews}></RatingReviewForm>
 
 
-           <RatingCard></RatingCard>     
+           <RatingCard reviews={reviews}></RatingCard>     
            
 
 
