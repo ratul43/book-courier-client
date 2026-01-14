@@ -13,7 +13,6 @@ const AllBooksPage = () => {
     // }, [axiosSecure, sort, order])
 
     const handleSelect = (e) => {
-        console.log(e.target.value);
         const sortText = e.target.value
         setSort(sortText.split("-")[0])
         setOrder(sortText.split("-")[1])
@@ -44,7 +43,7 @@ const AllBooksPage = () => {
         {/* sorting book  */}
 
         <select onChange={handleSelect} defaultValue="Pick an option" className="select">
-          <option disabled={true}>Pick an option</option>
+          <option>Pick an option</option>
           <option value="price-desc">Price: High - Low</option>
           <option value="price-asc">Price: Low - High </option>
         </select>
