@@ -6,17 +6,27 @@ const AllBooksPage = () => {
 
     const [sort, setSort] = useState("")
     const [order, setOrder] = useState("")
-    // const axiosSecure = useAxiosSecure()
+    
+    const axiosSecure = useAxiosSecure()
 
-    // useEffect(()=>{
-    //     axiosSecure.get(`/books/sorting?sort=${sort}&order=${order}`)
-    // }, [axiosSecure, sort, order])
+    const [searchText, setSearchText] = useState("")
+
 
     const handleSelect = (e) => {
         const sortText = e.target.value
         setSort(sortText.split("-")[0])
         setOrder(sortText.split("-")[1])
     }
+
+    const handleSearch = (e) => {
+      setSearchText(e.target.value)
+    }
+
+
+
+
+
+
   return (
     <div className="space-y-4 mt-4">
       <div className="flex justify-between ">
@@ -37,7 +47,7 @@ const AllBooksPage = () => {
               <path d="m21 21-4.3-4.3"></path>
             </g>
           </svg>
-          <input type="search" required placeholder="Search" />
+          <input onChange={handleSearch} type="search"  placeholder="Search" />
         </label>
 
         {/* sorting book  */}
@@ -48,7 +58,7 @@ const AllBooksPage = () => {
           <option value="price-asc">Price: Low - High </option>
         </select>
       </div>
-      <BooksCard sort={sort} order={order}></BooksCard>
+      <BooksCard sort={sort} order={order} searchText={searchText}></BooksCard>
     </div>
   );
 };

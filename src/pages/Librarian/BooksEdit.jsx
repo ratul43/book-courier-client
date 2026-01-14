@@ -38,6 +38,7 @@ const BooksEdit = () => {
   const handleUpdatedData = async (data) => {
     let imageURL = undefined;
 
+    console.log(data);
     // 1️⃣ Upload image ONLY if a new file is selected
     if (data.Image && data.Image.length > 0) {
       imageURL = await uploadImage(data);
@@ -190,9 +191,9 @@ const BooksEdit = () => {
                 )}
                 className="select w-full"
               >
-                <option></option>
-                <option>Published</option>
-                <option>Unpublished</option>
+                <option disabled>Select an option</option>
+                <option value="published">Published</option>
+                <option value="unpublished">Unpublished</option>
               </select>
               {errors.Status?.type === "required" && (
                 <p className="text-red-500">Status is required</p>

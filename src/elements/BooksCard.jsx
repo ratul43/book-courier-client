@@ -2,17 +2,25 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
-const BooksCard = ({order, sort}) => {
+const BooksCard = ({order, sort, searchText}) => {
   const axiosSecure = useAxiosSecure();
 
   const [books, setBooks] = useState([]);
 
   useEffect(()=>{
-         axiosSecure.get(`/books/sorting?sort=${sort}&order=${order}`)
+         axiosSecure.get(`/books/sorting?sort=${sort}&order=${order}&search=${searchText}`)
          .then((res)=>{
           setBooks(res.data)
          })
-     }, [axiosSecure, sort, order])
+     }, [axiosSecure, sort, order, searchText])
+
+     
+    useEffect(()=>{
+      axiosSecure.get(`/books/sorting?search`)
+    }, [axiosSecure])
+
+
+
 
   return (
     <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-2 grid-cols-1">
