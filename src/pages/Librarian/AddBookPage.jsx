@@ -22,7 +22,7 @@ const AddBookPage = () => {
       name: data.BookName,
       author: data.Author,
       description: data.description,
-      price: data.Price,
+      price: Number(data.Price),
       image: imgURL,
       publishStatus: data.Status,
       addedOn: new Date()

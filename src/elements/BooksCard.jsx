@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
-const BooksCard = () => {
+const BooksCard = ({order, sort}) => {
   const axiosSecure = useAxiosSecure();
 
   const [books, setBooks] = useState([]);
 
-  useEffect(() => {
-    axiosSecure.get("/allBooks/published").then((data) => setBooks(data.data));
-  }, [axiosSecure]);
+  useEffect(()=>{
+         axiosSecure.get(`/books/sorting?sort=${sort}&order=${order}`)
+         .then((res)=>{
+          setBooks(res.data)
+         })
+     }, [axiosSecure, sort, order])
 
   return (
     <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-2 grid-cols-1">
