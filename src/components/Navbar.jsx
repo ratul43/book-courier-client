@@ -2,42 +2,29 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import bookTruck from "../assets/rsz_1booktruck.png";
 import useAuth from "../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = useAuth();
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light')
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-  useEffect(()=>{
-    const html = document.querySelector('html')
-   
-      html.setAttribute('data-theme', theme)
-    
-    localStorage.setItem("theme", theme)
+  useEffect(() => {
+    const html = document.querySelector("html");
 
-  }, [theme])
+    html.setAttribute("data-theme", theme);
 
-
-
-
-
-  console.log(user);
-
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const handleLogout = () => {
-    logOut()
-    .then()
-    .catch(error => {
-      console.log(error.message)
-    })
-  }
+    logOut();
+    toast.success("Logout successful");
+  };
 
   const handleTheme = (checked) => {
-    setTheme(checked ? "dark": "light")
-  }
-
-
-
+    setTheme(checked ? "dark" : "light");
+  };
 
   return (
     <nav className="flex items-center h-20 px-6 md:px-10 justify-between border-b border-gray-300 relative z-50">
@@ -95,72 +82,63 @@ const Navbar = () => {
 
       {/* Desktop Buttons */}
       <div className="hidden md:flex items-center gap-3">
+        {user ? (
+          <>
+            <button onClick={handleLogout} className="btn btn-outline btn-sm">
+              Logout
+            </button>
 
-        {user ? 
-        <>
-        <button onClick={handleLogout} className="btn btn-outline btn-sm">
-          Logout 
-        </button> 
-        
-        <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full">
-              <img
-                alt="photo"
-                src={user?.photoURL}
-              />
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <img alt="photo" src={user?.photoURL} />
+                </div>
+              </div>
+              <ul
+                tabIndex="-1"
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              >
+                <li>
+                  <Link to="/dashboard/my-profile" className="justify-between">
+                    Profile
+                    <span className="badge">New</span>
+                  </Link>
+                </li>
+
+                <li>
+                  <button onClick={handleLogout}>Logout</button>
+                </li>
+              </ul>
             </div>
-          </div>
-          <ul
-            tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
-            <li>
-              <Link to="/dashboard/my-profile" className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </Link>
-            </li>
-            
-            <li>
-              <button onClick={handleLogout}>Logout</button>
-            </li>
-          </ul>
-        </div>
 
- <input
-           onChange={(e) => handleTheme(e.target.checked)}
-           type="checkbox"
-           defaultChecked={localStorage.getItem('theme') === "dark"}
-           className="toggle"/>
+            <input
+              onChange={(e) => handleTheme(e.target.checked)}
+              type="checkbox"
+              defaultChecked={localStorage.getItem("theme") === "dark"}
+              className="toggle"
+            />
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="btn btn-outline btn-sm">
+              Login
+            </Link>
+            <Link to="/register" className="btn btn-primary btn-sm">
+              Register
+            </Link>
 
-      
-
-        </>
-        
-        :
-        <>
-        <Link to="/login" className="btn btn-outline btn-sm">
-          Login
-        </Link>
-        <Link to="/register" className="btn btn-primary btn-sm">
-          Register
-        </Link>
-
- <input
-           onChange={(e) => handleTheme(e.target.checked)}
-           type="checkbox"
-           defaultChecked={localStorage.getItem('theme') === "dark"}
-           className="toggle"/>
-        </>
-         }
-        
-
-        
+            <input
+              onChange={(e) => handleTheme(e.target.checked)}
+              type="checkbox"
+              defaultChecked={localStorage.getItem("theme") === "dark"}
+              className="toggle"
+            />
+          </>
+        )}
       </div>
 
       {/* Mobile Menu */}
@@ -183,65 +161,63 @@ const Navbar = () => {
           </Link>
 
           <div className="flex gap-3 pt-2">
-            {user ?
-            <>
-             <button className="btn btn-outline btn-sm">Logout</button>
+            {user ? (
+              <>
+                <button
+                  onClick={handleLogout}
+                  className="btn btn-outline btn-sm"
+                >
+                  Logout
+                </button>
 
-          <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-10 rounded-full">
-                  <img
-                    alt="photo"
-                    src={user?.photoURL}
-                  />
+                <div className="dropdown dropdown-end">
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="w-10 rounded-full">
+                      <img alt="photo" src={user?.photoURL} />
+                    </div>
+                  </div>
+                  <ul
+                    tabIndex="-1"
+                    className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-20 p-2 bg-base-100"
+                  >
+                    <li>
+                      <Link to="/dashboard/my-profile">Profile</Link>
+                    </li>
+
+                    <li>
+                      <button onClick={handleLogout}>Logout</button>
+                    </li>
+                  </ul>
                 </div>
-              </div>
-              <ul
-                tabIndex="-1"
-                className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-20 p-2 bg-base-100"
-              >
-                <li>
-                  <Link to="/dashboard/my-profile">
-                Profile
-                
-              </Link>
-                </li>
-                
-                <li>
-                  <a>Logout</a>
-                </li>
-              </ul>
-            </div>
 
- <input
-           onChange={(e) => handleTheme(e.target.checked)}
-           type="checkbox"
-           defaultChecked={localStorage.getItem('theme') === "dark"}
-           className="toggle"/>
+                <input
+                  onChange={(e) => handleTheme(e.target.checked)}
+                  type="checkbox"
+                  defaultChecked={localStorage.getItem("theme") === "dark"}
+                  className="toggle"
+                />
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="btn btn-outline btn-sm">
+                  Login
+                </Link>
+                <Link to="/register" className="btn btn-primary btn-sm">
+                  Register
+                </Link>
 
-            </>
-     
-            : 
-            <>
-             <Link to="/login" className="btn btn-outline btn-sm">Login</Link>
-            <Link to="/register" className="btn btn-primary btn-sm">Register</Link>
-
- <input
-           onChange={(e) => handleTheme(e.target.checked)}
-           type="checkbox"
-           defaultChecked={localStorage.getItem('theme') === "dark"}
-           className="toggle"/>
-
-            </>
-           
-          }
-            
-
-            
+                <input
+                  onChange={(e) => handleTheme(e.target.checked)}
+                  type="checkbox"
+                  defaultChecked={localStorage.getItem("theme") === "dark"}
+                  className="toggle"
+                />
+              </>
+            )}
           </div>
         </div>
       )}

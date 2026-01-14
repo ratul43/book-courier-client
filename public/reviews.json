@@ -1,9 +1,9 @@
 [
   {
     "id": 1,
-    "name": "Sarah Johnson",
-    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI_6Q0G07rnkPKSWHjB1SpuIj7BLwqLPe5zg&s",
-    "role": "Book Lover",
+    "name": "Robert Smith",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCeBV7NTj3dtHGGZrY28G8uMBDnkplb3LKfw&s",
+    "role": "Businessman",
     "review": "BookCourier delivers books super fast! The quality and service are amazing. Highly recommended."
   },
   {
@@ -16,7 +16,7 @@
   {
     "id": 3,
     "name": "Emma Wilson",
-    "photo": "https://images.squarespace-cdn.com/content/v1/552403f5e4b00ed50628c8b9/61ad383a-423e-4e05-b934-4f1653d76a8d/BrusselsHeadshot_Hedashot_Corporate_Photographer_Studio_Session_Business_LinkedIn_CV_Shooting_Professional_PortraitBruxelles_Prix_Price_Best_Devis_Quote_Lillo_Mendola_240801_02893.jpg",
+    "photo": "https://static.wixstatic.com/media/303548_077e095721d647918eaff6b5df0eabab~mv2.jpg/v1/crop/x_1184,y_95,w_4161,h_3678/fill/w_297,h_262,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/Hanyecz%20Eszter%20377%20PS.jpg",
     "role": "Freelancer",
     "review": "Smooth ordering process and excellent customer support. Will definitely order again!"
   },
@@ -29,21 +29,21 @@
   },
   {
     "id": 5,
-    "name": "Olivia Brown",
-    "photo": "https://www.headshots-london.co.uk/wp-content/uploads/2019/11/1x1-Crop-Corporate-Headshot.-Photography-headshots-london.co_.uk_.jpg",
+    "name": "Richard Wilson",
+    "photo": "https://files.idyllic.app/files/static/3395954?width=256&optimizer=image",
     "role": "Teacher",
     "review": "A wide range of books at reasonable prices. My students love the recommendations."
   },
   {
     "id": 6,
     "name": "James Anderson",
-    "photo": "https://i.pravatar.cc/100?img=18",
+    "photo": "data:image/jpeg;base64,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",
     "role": "Researcher",
     "review": "Finding research books was never this easy. Reliable service and fast shipping."
   },
   {
     "id": 7,
-    "name": "Sophia Martinez",
+    "name": "Elena Beth",
     "photo": "https://serenabolton.com/wp-content/uploads/2022/12/image-1080x720.png",
     "role": "Content Writer",
     "review": "Beautiful UI and smooth checkout process. BookCourier makes buying books enjoyable."
@@ -57,8 +57,8 @@
   },
   {
     "id": 9,
-    "name": "Ava Thompson",
-    "photo": "https://i.pravatar.cc/100?img=30",
+    "name": "David Smith",
+    "photo": "https://files.idyllic.app/files/static/3929121?width=256&optimizer=image",
     "role": "College Student",
     "review": "I saved a lot with their discounts. Fast delivery and genuine books."
   },
