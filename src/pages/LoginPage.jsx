@@ -1,83 +1,176 @@
-import React from 'react';
-import { FaFacebook } from 'react-icons/fa';
-import { FcGoogle } from 'react-icons/fc';
-import { GrGithub } from 'react-icons/gr';
-import { Link, useNavigate } from 'react-router';
-import useAuth from '../hooks/useAuth';
+import React from "react";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import { FaFacebook } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { GrGithub } from "react-icons/gr";
+import useAuth from "../hooks/useAuth";
 
 const LoginPage = () => {
-        
-  const {signInGoogle} = useAuth()
-  const navigate = useNavigate()
+  const { signInGoogle, signInUser } = useAuth();
+  const navigate = useNavigate();
 
-  const handleGoogleSignIn = ()=>{
-    signInGoogle()
-    .then(result => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInGoogle();
       console.log(result.user);
-      navigate("/")
-    })
-    .catch(error=>{
-      console.log(error.message);
-    })
-  }
+      toast.success("Google sign in successful!");
+      navigate("/");
+    } catch (error) {
+      console.error("Google sign in error:", error.message);
+      toast.error(error.message || "Failed to sign in with Google");
+    }
+  };
 
+  const handleLogin = async (data) => {
+    try {
+      await signInUser(data.email, data.password);
+      toast.success("Login successful!");
+      navigate("/");
+    } catch (error) {
+      console.error("Login error:", error.message);
+      toast.error(error.message || "Failed to login. Please check your credentials.");
+    }
+  };
 
+  return (
+    <div className="min-h-screen flex items-center justify-center items-start bg-gradient-to-br from-base-100 to-base-200 px-4">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold mb-2">Welcome Back</h1>
+          <p className="text-base-content/70">Log in to your account to continue</p>
+        </div>
 
+        <div className="card bg-base-100 shadow-2xl border border-base-300">
+          <div className="card-body p-6 md:p-8">
+            <form onSubmit={handleSubmit(handleLogin)} className="space-y-4">
+              {/* Email Field */}
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-medium">Email Address</span>
+                </label>
+                <input
+                  type="email"
+                  className={`input input-bordered w-full ${
+                    errors.email ? "input-error" : ""
+                  }`}
+                  placeholder="Enter your email"
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Invalid email address",
+                    },
+                  })}
+                />
+                {errors.email && (
+                  <label className="label">
+                    <span className="label-text-alt text-error">
+                      {errors.email.message}
+                    </span>
+                  </label>
+                )}
+              </div>
 
-    return (
-        <div>
-      <div className="hero">
-        <div className="hero-content flex-col">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Login now!</h1>
-          </div>
-          <div className="card bg-base-100 w-full  shrink-0 shadow-2xl">
-            <div className="card-body">
-              <fieldset className="fieldset">
-                
-                <label className="label">Email</label>
-                <input type="email" className="input" placeholder="Email" />
-                <label className="label">Password</label>
+              {/* Password Field */}
+              <div className="form-control">
+                <div className="flex justify-between items-center">
+                  <label className="label">
+                    <span className="label-text font-medium">Password</span>
+                  </label>
+                  <Link
+                    to="/forgot-password"
+                    className="label-text-alt link  font-medium"
+                  >
+                    Forgot password?
+                  </Link>
+                </div>
                 <input
                   type="password"
-                  className="input"
-                  placeholder="Password"
+                  className={`input input-bordered w-full ${
+                    errors.password ? "input-error" : ""
+                  }`}
+                  placeholder="Enter your password"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 6,
+                      message: "Password must be at least 6 characters",
+                    },
+                  })}
                 />
-              
+                {errors.password && (
+                  <label className="label">
+                    <span className="label-text-alt text-error">
+                      {errors.password.message}
+                    </span>
+                  </label>
+                )}
+              </div>
 
-                <div>
-                  <a className="link link-hover">Forgot password?</a>
-                </div>
-                <button className="btn btn-neutral mt-4">Login</button>
+              {/* Submit Button */}
+              <div className="form-control mt-6">
+                <button
+                  type="submit"
+                  className="btn w-full"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <span className="loading loading-spinner"></span>
+                  ) : (
+                    "Log In"
+                  )}
+                </button>
+              </div>
+            </form>
 
-    <p className="px-6 mt-2 text-sm text-center text-gray-400">
-          Don't have an account?
-          <Link
-            to="/register"
-            className="hover:underline hover:text-lime-500 mx-1 font-semibold text-gray-600"
-          >
-            Register
-          </Link>
-          
-        </p>
+            {/* Divider */}
+            <div className="divider my-6">OR</div>
 
+            {/* Social Login Buttons */}
+            <div className="space-y-3">
+              <button
+                onClick={handleGoogleSignIn}
+                className="btn btn-outline w-full hover:bg-base-200"
+                type="button"
+              >
+                <FcGoogle className="w-5 h-5" />
+                <span className="flex-1">Continue with Google</span>
+              </button>
 
-      <h3 className='text-center'>OR</h3>
+            </div>
 
-      {/* Google */}
-<button onClick={handleGoogleSignIn} className="btn bg-white text-black w-full border-[#e5e5e5]">
-  <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><g><path d="m0 0H512V512H0" fill="#fff"></path><path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path><path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path><path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path><path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path></g></svg>
-  Login with Google
-</button>
-
-
-              </fieldset>
+            {/* Register Link */}
+            <div className="text-center mt-6 pt-4 border-t border-base-300">
+              <p className="text-base-content/70">
+                Don't have an account?{" "}
+                <Link
+                  to="/register"
+                  className="link font-semibold"
+                >
+                  Create Account
+                </Link>
+              </p>
             </div>
           </div>
         </div>
+
+       
       </div>
     </div>
-    );
+  );
 };
 
 export default LoginPage;

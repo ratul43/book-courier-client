@@ -6,33 +6,63 @@ import ItemCalc from "./../elements/ItemCalc";
 import Swal from "sweetalert2";
 import RatingCard from "../elements/RatingCard";
 import RatingReviewForm from "../elements/RatingReviewForm";
+import useAuth from "../hooks/useAuth";
 
 const BookDetailsPage = () => {
   const { id } = useParams();
+  const {user} = useAuth()
+  const email = user?.email 
   const orderModalRef = useRef();
   const navigate = useNavigate();
 
   const [book, setBook] = useState({});
   const [quantity, setQuantity] = useState(1);
-  const [reviews, setReviews] = useState([])
+  const [reviews, setReviews] = useState([]);
+  const [canReview, setCanReview] = useState(false);
+
+  
   const axiosSecure = useAxiosSecure();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm();
 
   useEffect(() => {
-    axiosSecure.get(`/allBooks/${id}`).then((res) => setBook(res.data));
-  },
-  
-  [axiosSecure, id]);
+    axiosSecure.get(`/allBooks/${id}`).then((res) =>{
+      setBook(res.data)
+    })
+  }, [axiosSecure, id]);
 
-  useEffect(()=>{
-    axiosSecure.get(`/reviews?bookId=${id}`)
-    .then((res)=>{setReviews(res.data)})
-  },[axiosSecure, id])
+  useEffect(() => {
+    axiosSecure.get(`/reviews?bookId=${id}`).then((res) => {
+      setReviews(res.data);
+    });
+  }, [axiosSecure, id]);
+
+useEffect(() => {
+  if (!user?.email || !id) return;
+
+  axiosSecure
+    .get(`/order/userValidation?email=${user.email}&bookId=${id}`)
+    .then(res => {
+      setCanReview(res.data.canReview);
+    });
+}, [axiosSecure, user?.email, id]);
+
+useEffect(() => {
+  if (!book?.name || !email) return;
+
+  reset({
+    Name: book.name,
+    Email: email,
+  });
+}, [book, email, reset]);
+
+
+
 
 
   const handleOrder = (data) => {
@@ -69,7 +99,10 @@ const BookDetailsPage = () => {
         axiosSecure.post("/orders", orderRelatedData).then(() => {
           Swal.fire({
             title: "Confirmed",
-            text: `Your order has been saved. Please go to the order section and pay $${totalPrice}`,
+            text: `Your order has been saved 
+             Please pay $${totalPrice} 
+            You can also give us a review for support
+            `,
             icon: "success",
           });
           navigate("/dashboard/my-orders");
@@ -79,17 +112,15 @@ const BookDetailsPage = () => {
   };
 
   const handleWishList = async (book) => {
-
     const wishListData = {
       Name: book.name,
       bookId: book._id,
       bookImg: book.image,
       bookName: book.name,
       author: book.author,
-      price: book.price 
+      price: book.price,
     };
-    
-    
+
     await axiosSecure.post("/allBooks/wishlist", wishListData).then((res) => {
       Swal.fire({
         position: "top-end",
@@ -121,7 +152,7 @@ const BookDetailsPage = () => {
             </button>
 
             <button
-              onClick={()=>handleWishList(book)}
+              onClick={() => handleWishList(book)}
               className="btn btn-outline px-8"
             >
               Add to Wishlist
@@ -189,15 +220,17 @@ const BookDetailsPage = () => {
         </div>
       </div>
 
+   {canReview && (
+  <RatingReviewForm
+    name={book.name}
+    id={id}
+    setReviews={setReviews}
+  />
+)}
 
-          <RatingReviewForm name={book.name} id={id} setReviews={setReviews}></RatingReviewForm>
+     
 
-
-           <RatingCard reviews={reviews}></RatingCard>     
-           
-
-
-      
+      <RatingCard reviews={reviews}></RatingCard>
     </div>
   );
 };

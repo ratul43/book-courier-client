@@ -38,7 +38,6 @@ const BooksEdit = () => {
   const handleUpdatedData = async (data) => {
     let imageURL = undefined;
 
-    console.log(data);
     // 1️⃣ Upload image ONLY if a new file is selected
     if (data.Image && data.Image.length > 0) {
       imageURL = await uploadImage(data);

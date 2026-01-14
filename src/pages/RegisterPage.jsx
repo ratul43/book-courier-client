@@ -63,13 +63,7 @@ const completeRegistration = (data, photoURL) => {
   updateUserProfile(userProfile)
     .then(() => {
       axiosSecure.post("/users", profileData);
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "User registration successful",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      toast.success("User Registration successful")
       navigate("/");
     })
     .catch((error) => console.log(error.message));
