@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const MyOrders = () => {
   const axiosSecure = useAxiosSecure();
-
+  const {user} = useAuth()
   const [orders, setOrders] = useState([]);
   // console.log(orders)
+ 
+  useEffect(()=>{
+    if(!user.email) return
+    axiosSecure.get(`/orders/user?email=${user.email}`)
+    .then((res)=>{
+      setOrders(res.data)
+    })
+  }, [axiosSecure, user])
 
   const handleCancel = (id) => {
     Swal.fire({
@@ -19,6 +28,11 @@ const MyOrders = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.patch(`/orders/cancel/${id}`).then(() => {
+          setOrders((prev) =>
+            prev.map((order) =>
+              order._id === id ? { ...order, status: "cancelled" } : order
+            )
+          );
           Swal.fire({
             title: "Cancelled!",
             text: "Your order has been cancelled.",
@@ -44,16 +58,12 @@ const MyOrders = () => {
     window.location.assign(res.data.url);
   };
 
-  useEffect(() => {
-    axiosSecure
-      .get(`/orders`)
-      .then((res) => {
-        setOrders(res.data);
-      })
-      .catch((error) => console.error("Error fetching posts:", error));
-  }, [axiosSecure, handleCancel]);
+  if(orders.length<1){
+    return <div>No order data</div>
+  }
 
   return (
+    
     <div>
       <h1 className="font-bold text-2xl text-center">My Orders</h1>
       <div>
@@ -120,9 +130,10 @@ const MyOrders = () => {
                       <button
                         onClick={() => handlePayment(order)}
                         className={`btn ${
-       order?.paymentStatus === "paid" || order?.status === "cancelled" ? "hidden"
-                          :
-                            "block"
+                          order?.paymentStatus === "paid" ||
+                          order?.status === "cancelled"
+                            ? "hidden"
+                            : "block"
                         }`}
                       >
                         Pay Now

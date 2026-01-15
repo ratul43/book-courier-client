@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Link } from "react-router";
+import useAuth from "../../hooks/useAuth";
 
 const MyWishList = () => {
+  const {user} = useAuth()
   const axiosSecure = useAxiosSecure()
   const [wishBooks, setWishBooks] = useState([])
   useEffect(()=>{
-    axiosSecure.get("/books/wishListed")
+    axiosSecure.get(`/books/wishListed/user?email=${user?.email}`)
     .then((res)=> {
       setWishBooks(res.data)
     })
-  }, [axiosSecure])
+  }, [axiosSecure, user?.email])
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
@@ -22,6 +24,8 @@ const MyWishList = () => {
           Books you’ve saved for later
         </p>
       </div>
+      
+      {wishBooks.length<1 && <h1 className="font-bold text-2xl">No Books saved</h1>}
 
       {/* Wishlist Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -38,9 +42,9 @@ const MyWishList = () => {
           </figure>
 
           <div className="card-body p-4">
-            <h3 className="font-bold text-lg">
+            <Link to={`/bookDetails/${wishBook.bookId}`} className="font-bold text-lg">
               {wishBook?.bookName}
-            </h3>
+            </Link>
             <p className="text-sm text-gray-500">
               {wishBook?.author}
             </p>

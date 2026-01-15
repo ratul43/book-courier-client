@@ -52,6 +52,10 @@ useEffect(() => {
     });
 }, [axiosSecure, user?.email, id]);
 
+useEffect(()=>{
+
+},[])
+
 useEffect(() => {
   if (!book?.name || !email) return;
 
@@ -118,8 +122,10 @@ useEffect(() => {
       bookImg: book.image,
       bookName: book.name,
       author: book.author,
-      price: book.price,
+      email: email,
+      price: book.price
     };
+    console.log(wishListData);
 
     await axiosSecure.post("/allBooks/wishlist", wishListData).then((res) => {
       Swal.fire({

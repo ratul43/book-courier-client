@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import { FaFacebook } from "react-icons/fa";
+import { FaEye, FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { GrGithub } from "react-icons/gr";
 import useAuth from "../hooks/useAuth";
+import { IoEyeOff } from "react-icons/io5";
 
 const LoginPage = () => {
   const { signInGoogle, signInUser } = useAuth();
-  const navigate = useNavigate();
+  const [show, setShow] = useState(false);
 
+  const navigate = useNavigate();
+  const location = useLocation();
   const {
     register,
     handleSubmit,
@@ -27,7 +30,7 @@ const LoginPage = () => {
       const result = await signInGoogle();
       console.log(result.user);
       toast.success("Google sign in successful!");
-      navigate("/");
+      navigate(location.state || "/");
     } catch (error) {
       console.error("Google sign in error:", error.message);
       toast.error(error.message || "Failed to sign in with Google");
@@ -38,10 +41,13 @@ const LoginPage = () => {
     try {
       await signInUser(data.email, data.password);
       toast.success("Login successful!");
-      navigate("/");
+      navigate(location.state || "/");
     } catch (error) {
       console.error("Login error:", error.message);
-      toast.error(error.message || "Failed to login. Please check your credentials.");
+      toast.error(
+        error.message.slice(10) ||
+          "Failed to login. Please check your credentials."
+      );
     }
   };
 
@@ -50,7 +56,9 @@ const LoginPage = () => {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-2">Welcome Back</h1>
-          <p className="text-base-content/70">Log in to your account to continue</p>
+          <p className="text-base-content/70">
+            Log in to your account to continue
+          </p>
         </div>
 
         <div className="card bg-base-100 shadow-2xl border border-base-300">
@@ -86,31 +94,32 @@ const LoginPage = () => {
 
               {/* Password Field */}
               <div className="form-control">
-                <div className="flex justify-between items-center">
+                <div className="relative">
                   <label className="label">
                     <span className="label-text font-medium">Password</span>
                   </label>
-                  <Link
-                    to="/forgot-password"
-                    className="label-text-alt link  font-medium"
+                  <input
+                    type={show ? "text" : "password"}
+                    className={`input input-bordered w-full  ${
+                      errors.password ? "input-error" : ""
+                    }`}
+                    placeholder="Enter your password"
+                    {...register("password", {
+                      required: "Password is required",
+                      minLength: {
+                        value: 8,
+                        message: "Password must be at least 8 characters",
+                      },
+                    })}
+                  />
+                  <span
+                    onClick={() => setShow(!show)}
+                    className="absolute right-2 top-9 cursor-pointer z-50"
                   >
-                    Forgot password?
-                  </Link>
+                    {show ? <FaEye /> : <IoEyeOff />}
+                  </span>
                 </div>
-                <input
-                  type="password"
-                  className={`input input-bordered w-full ${
-                    errors.password ? "input-error" : ""
-                  }`}
-                  placeholder="Enter your password"
-                  {...register("password", {
-                    required: "Password is required",
-                    minLength: {
-                      value: 6,
-                      message: "Password must be at least 6 characters",
-                    },
-                  })}
-                />
+
                 {errors.password && (
                   <label className="label">
                     <span className="label-text-alt text-error">
@@ -118,6 +127,15 @@ const LoginPage = () => {
                     </span>
                   </label>
                 )}
+              </div>
+
+              <div>
+                <Link
+                  to="/forgot-password"
+                  className="label-text-alt link  font-medium"
+                >
+                  Forgot password?
+                </Link>
               </div>
 
               {/* Submit Button */}
@@ -149,25 +167,19 @@ const LoginPage = () => {
                 <FcGoogle className="w-5 h-5" />
                 <span className="flex-1">Continue with Google</span>
               </button>
-
             </div>
 
             {/* Register Link */}
             <div className="text-center mt-6 pt-4 border-t border-base-300">
               <p className="text-base-content/70">
                 Don't have an account?{" "}
-                <Link
-                  to="/register"
-                  className="link font-semibold"
-                >
+                <Link to="/register" className="link font-semibold">
                   Create Account
                 </Link>
               </p>
             </div>
           </div>
         </div>
-
-       
       </div>
     </div>
   );

@@ -6,11 +6,12 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import useImage from "../../hooks/useImage";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useRole from "../../hooks/useRole";
 
 const MyProfile = () => {
   const { user, updateUserProfile } = useAuth();
   const axiosSecure = useAxiosSecure()
- 
+  const {role} = useRole()
   const {
     register,
     handleSubmit,
@@ -64,27 +65,31 @@ const MyProfile = () => {
       })
   };
 
-  return (
+  if(role){
+    return (
     <div>
       {/* Update Profile Form */}
-      <div className="card bg-base-100 shadow-lg p-6 text-center">
-        <div className="flex justify-center">
+      <div className="card bg-base-100 shadow-lg p-6 text-center grid grid-cols-2">
+        <div>
+          <div className="flex justify-center">
           <img
             src={user?.photoURL}
             alt="User Avatar"
             className="w-32 h-32 rounded-full border-4 border-primary"
           />
         </div>
-
+   
         <h2 className="text-xl font-semibold mt-4">{user?.displayName}</h2>
         <p className="text-gray-500">{user?.email}</p>
 
         {/* Role Badge */}
         <div className="mt-3">
-          <span className="badge badge-primary badge-outline">Customer</span>
+          <span className="badge badge-primary badge-outline">{role.charAt(0).toUpperCase() + role.slice(1)}</span>
         </div>
-
-        <div className=" w-2xl p-6 mx-auto">
+        </div>
+        
+<div>
+  <div className="p-6 mx-auto">
           <h3 className="text-xl font-semibold mb-4">Update Profile</h3>
 
           <form onSubmit={handleSubmit(handleUpdate)} className="space-y-4">
@@ -117,9 +122,14 @@ const MyProfile = () => {
             </div>
           </form>
         </div>
+</div>
+        
       </div>
     </div>
   );
+  }
+
+  
 };
 
 export default MyProfile;

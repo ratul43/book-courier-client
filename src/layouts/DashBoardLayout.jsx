@@ -8,8 +8,11 @@ import { RiBookFill } from "react-icons/ri";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
 import { HiUsers } from "react-icons/hi";
 import { MdLibraryBooks } from "react-icons/md";
+import useRole from "../hooks/useRole";
 
 const DashBoardLayout = () => {
+  const {role} = useRole()
+  
   return (
     <div className="max-w-7xl mx-auto">
       <div className="drawer lg:drawer-open max-w-7xl mx-auto">
@@ -135,9 +138,13 @@ const DashBoardLayout = () => {
                 </NavLink>
               </li>
 
-              {/* Librarian Dashboards icons  */}
 
-              <li>
+              {/* Librarian Dashboards icons  */}
+              {
+             (["librarian", "admin"].includes(role)) &&
+              <>
+                       
+ <li>
                 <NavLink
                   className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                   data-tip="Add Book"
@@ -171,11 +178,19 @@ const DashBoardLayout = () => {
 
                   <span className="is-drawer-close:hidden">Orders</span>
                 </NavLink>
-              </li>
+              </li>  
+              </>
+       
+             
 
+}
+           
+             
               {/* admin dashboard page  */}
-
-              <li>
+{
+  (["admin"].includes(role)) &&
+  <>
+  <li>
                 <NavLink
                   className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                   data-tip="All Users"
@@ -199,32 +214,11 @@ const DashBoardLayout = () => {
                   <span className="is-drawer-close:hidden">Manage Books</span>
                 </NavLink>
               </li>
+  </>
+}
+              
 
-              {/* List item */}
-              <li>
-                <button
-                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  data-tip="Settings"
-                >
-                  {/* Settings icon */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                    strokeWidth="2"
-                    fill="none"
-                    stroke="currentColor"
-                    className="my-1.5 inline-block size-4"
-                  >
-                    <path d="M20 7h-9"></path>
-                    <path d="M14 17H5"></path>
-                    <circle cx="17" cy="17" r="3"></circle>
-                    <circle cx="7" cy="7" r="3"></circle>
-                  </svg>
-                  <span className="is-drawer-close:hidden">Settings</span>
-                </button>
-              </li>
+            
             </ul>
           </div>
         </div>

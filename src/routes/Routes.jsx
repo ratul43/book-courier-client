@@ -20,6 +20,9 @@ import ManageBooksPage from "../pages/AdminDashboard/ManageBooksPage";
 import MyWishList from "../pages/User/MyWishList";
 import PaymentSuccess from "../pages/Payment/PaymentSuccess";
 import PaymentCancel from "../pages/Payment/PaymentCancel";
+import PrivateRoute from "./PrivateRoute";
+import LibrarianRoute from "./LibrarianRoute";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -36,13 +39,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "/bookDetails/:id",
-        element: <BookDetailsPage></BookDetailsPage>,
+        element: <PrivateRoute> <BookDetailsPage></BookDetailsPage> </PrivateRoute> ,
       }
     ]
   },
   {
     path:"/dashboard",
-    element: <DashBoardLayout></DashBoardLayout>,
+    element: <PrivateRoute> <DashBoardLayout></DashBoardLayout> </PrivateRoute> ,
     children: [
       {
         path:"/dashboard/my-orders",
@@ -72,27 +75,27 @@ export const router = createBrowserRouter([
       },
       {
         path:"/dashboard/librarian/add-book",
-        element: <AddBookPage></AddBookPage>
+        element: <LibrarianRoute> <AddBookPage></AddBookPage> </LibrarianRoute> 
       },
       {
         path:"/dashboard/librarian/added-books",
-        element: <MyBooks></MyBooks>
+        element: <LibrarianRoute> <MyBooks></MyBooks> </LibrarianRoute> 
       },
       {
         path:"/dashboard/librarian/orders",
-        element: <OrdersPage></OrdersPage>
+        element: <LibrarianRoute> <OrdersPage></OrdersPage> </LibrarianRoute> 
       },
       {
         path:"/dashboard/admin/users-management",
-        element: <AllUsers></AllUsers>
+        element: <AdminRoute> <AllUsers></AllUsers> </AdminRoute> 
       },
       {
         path:"/dashboard/librarian/added-books/edit/:id",
-        element: <BooksEdit></BooksEdit>
+        element: <LibrarianRoute> <BooksEdit></BooksEdit> </LibrarianRoute> 
       },
       {
         path: "/dashboard/admin/manage-books",
-        element: <ManageBooksPage></ManageBooksPage>
+        element: <AdminRoute> <ManageBooksPage></ManageBooksPage> </AdminRoute> 
       }
     ]
   },
