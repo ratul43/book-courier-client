@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import useAuth from "../hooks/useAuth";
-import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
+import useAxios from "../hooks/useAxios";
 
 const RegisterPage = () => {
   const {
@@ -14,11 +14,11 @@ const RegisterPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const axiosSecure = useAxiosSecure();
 
   const { registerUser, updateUserProfile } = useAuth();
   const [show, setShow] = useState(false);
 
+  const axiosModel = useAxios()
   const navigate = useNavigate();
 
   const handleRegister = (data) => {
@@ -38,7 +38,7 @@ const RegisterPage = () => {
             import.meta.env.VITE_image_host_key
           }`;
 
-          axiosSecure.post(image_API_URL, formData).then((res) => {
+          axiosModel.post(image_API_URL, formData).then((res) => {
             // Use uploaded image
             completeRegistration(data, res.data.data.url);
           });
@@ -67,7 +67,7 @@ const RegisterPage = () => {
 
     updateUserProfile(userProfile)
       .then(() => {
-        axiosSecure.post("/users", profileData);
+        axiosModel.post("/users", profileData);
         toast.success("User Registration successful");
         navigate("/");
       })

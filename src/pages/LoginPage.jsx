@@ -7,6 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import { GrGithub } from "react-icons/gr";
 import useAuth from "../hooks/useAuth";
 import { IoEyeOff } from "react-icons/io5";
+import truckImg from "../assets/rsz_1booktruck.png";
 
 const LoginPage = () => {
   const { signInGoogle, signInUser } = useAuth();
@@ -52,8 +53,11 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center items-start bg-gradient-to-br from-base-100 to-base-200 px-4">
+    <div className="min-h-screen flex justify-center items-start bg-gradient-to-br from-base-100 to-base-200 px-4">
       <div className="w-full max-w-md">
+        <Link to="/">
+                <img className="mx-auto md:hidden block" src={truckImg} alt="bookTruck" />
+        </Link>
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-2">Welcome Back</h1>
           <p className="text-base-content/70">

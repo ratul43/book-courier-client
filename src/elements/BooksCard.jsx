@@ -14,12 +14,6 @@ const BooksCard = ({order, sort, searchText}) => {
          })
      }, [axiosSecure, sort, order, searchText])
 
-     
-    useEffect(()=>{
-      axiosSecure.get(`/books/sorting?search`)
-    }, [axiosSecure])
-
-
 
 
   return (

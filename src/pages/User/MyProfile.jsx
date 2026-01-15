@@ -58,10 +58,8 @@ const MyProfile = () => {
       reset()
         toast.success("Profile updated")
       })
-      console.log(user.email);
       await axiosSecure.patch(`/comment/user/update?email=${user.email}`, updateProfileForReviewSection)
-      .then((res)=>{
-        console.log(res.data);
+      .then(()=>{
       })
   };
 

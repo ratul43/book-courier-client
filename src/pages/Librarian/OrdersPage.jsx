@@ -97,7 +97,7 @@ const OrdersPage = () => {
 
           <tbody>
             {orders.map((order, index) => (
-              <tr>
+              <tr key={index}>
                 <td>{index + 1}</td>
                 <td>
                   <img

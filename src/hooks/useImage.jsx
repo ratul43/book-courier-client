@@ -1,7 +1,7 @@
-import useAxiosSecure from "./useAxiosSecure";
+import useAxios from "./useAxios";
 
 const useImage = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosModel = useAxios()
 
   const uploadImage = async (data) => {
     const imageFile = data.Image[0];
@@ -14,7 +14,7 @@ const useImage = () => {
     }`;
 
     try {
-      const res = await axiosSecure.post(image_API_URL, formData);
+      const res = await axiosModel.post(image_API_URL, formData);
       return res.data.data.url; // ✅ RETURN URL
     } catch (error) {
       console.error("Image upload failed:", error);
