@@ -43,7 +43,8 @@ const DashBoardLayout = () => {
             </label>
             <div className="px-4">Book Courier Dashboard</div>
           </nav>
-          <h1>User Dashboard</h1>
+          {role && <h1 className="font-bold text-4xl text-center">{role.charAt(0).toUpperCase() + role.slice(1)} Dashboard</h1>}
+          
           {/* Page content here */}
           <Outlet></Outlet>
         </div>

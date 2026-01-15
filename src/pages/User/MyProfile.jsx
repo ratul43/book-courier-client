@@ -69,7 +69,7 @@ const MyProfile = () => {
     return (
     <div>
       {/* Update Profile Form */}
-      <div className="card bg-base-100 shadow-lg p-6 text-center grid grid-cols-2">
+      <div className="card bg-base-100 shadow-lg p-6 text-center grid md:grid-cols-2">
         <div>
           <div className="flex justify-center">
           <img
