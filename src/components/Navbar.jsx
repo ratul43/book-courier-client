@@ -31,7 +31,7 @@ const Navbar = () => {
       {/* Logo */}
       <Link to="/" className="flex items-center gap-2">
         <img
-          className="h-20 hidden md:block"
+          className="h-20 hidden lg:block"
           src={bookTruck}
           alt="BookCourier"
         />

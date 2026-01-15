@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const Slider1 = ({book}) => {
    if(!book) return null 
     return (
-        <div className='flex justify-center gap-48 items-center bg-[#D5ECDE] bg-cover bg-no-repeat'>
+        <div className='md:flex justify-center gap-48 items-center bg-[#D5ECDE] bg-cover bg-no-repeat'>
             <div className='space-y-4'>
         <h1 className='text-black font-extrabold text-5xl'>{book.name}</h1>
                <p>{book.shortDescription}</p>
@@ -12,7 +12,7 @@ const Slider1 = ({book}) => {
                <Link to={'/allBooks'} className='btn btn-primary'>Discover now </Link>
             </div>
             <div>
-                <img className='w-80 p-7' src={book.image} alt={book.name} />
+                <img className='md:w-80 w-50 mx-auto p-7' src={book.image} alt={book.name} />
             </div>
         </div>
     );
