@@ -23,6 +23,8 @@ import PaymentCancel from "../pages/Payment/PaymentCancel";
 import PrivateRoute from "./PrivateRoute";
 import LibrarianRoute from "./LibrarianRoute";
 import AdminRoute from "./AdminRoute";
+import AboutPage from "../pages/About/AboutPage";
+import ContactPage from "../pages/Contact/ContactPage";
 
 export const router = createBrowserRouter([
   {
@@ -34,12 +36,20 @@ export const router = createBrowserRouter([
         element: <HomePage></HomePage>
       },
       {
+        path: "/about",
+        Component: AboutPage
+      },
+      {
         path: "/allBooks",
         Component: AllBooksPage
       },
       {
         path: "/bookDetails/:id",
         element: <PrivateRoute> <BookDetailsPage></BookDetailsPage> </PrivateRoute> ,
+      },
+      {
+        path:"/contact",
+        Component: ContactPage
       }
     ]
   },

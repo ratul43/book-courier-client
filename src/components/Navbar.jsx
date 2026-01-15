@@ -65,7 +65,11 @@ const Navbar = () => {
         >
           Home
         </NavLink>
-        <NavLink to="/about">About</NavLink>
+        <NavLink to="/about" className={({ isActive }) =>
+            isActive
+              ? "text-primary font-bold underline underline-offset-2"
+              : ""
+          }>About</NavLink>
         <NavLink
           to="/allBooks"
           className={({ isActive }) =>
@@ -77,7 +81,11 @@ const Navbar = () => {
           Books
         </NavLink>
         <NavLink to="/dashboard">Dashboard</NavLink>
-        <NavLink to="/contact">Contact</NavLink>
+        <NavLink to="/contact" className={({ isActive }) =>
+            isActive
+              ? "text-primary font-bold underline underline-offset-2"
+              : ""
+          }>Contact</NavLink>
       </div>
 
       {/* Desktop Buttons */}
