@@ -59,7 +59,7 @@ const MyOrders = () => {
   };
 
   if(orders.length<1){
-    return <div>No order data</div>
+    return <h1 className="font-bold text-2xl">No orders data available</h1>
   }
 
   return (

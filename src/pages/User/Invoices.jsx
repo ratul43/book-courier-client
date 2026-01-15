@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
 
 const Invoices = () => {
   const [invoices, setInvoices] = useState([])
   const axiosSecure = useAxiosSecure()
 
+  const {user} = useAuth()
+
   useEffect(()=>{
-    axiosSecure.get("/payments")  
+    if(!user.email) return
+    axiosSecure.get(`/payments/user?email=${user.email}`)  
     .then((res)=>{
       setInvoices(res.data);
     })
-  }, [axiosSecure])
+  }, [axiosSecure, user.email])
 
-
+if(invoices.length<1){
+    return <h1 className="font-bold text-2xl">No invoices available</h1>
+  }
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
