@@ -27,7 +27,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex items-center h-20 px-6 md:px-10 justify-between border-b border-gray-300 relative z-50">
+    <nav className="flex items-center h-20 px-6 justify-between border-b border-gray-300 relative z-50">
       {/* Logo */}
       <Link to="/" className="flex items-center gap-2">
         <img

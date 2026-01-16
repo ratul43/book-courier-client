@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import BooksCard from "./../elements/BooksCard";
-import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AllBooksPage = () => {
 
     const [sort, setSort] = useState("")
     const [order, setOrder] = useState("")
-    
-    const axiosSecure = useAxiosSecure()
 
     const [searchText, setSearchText] = useState("")
 
@@ -49,7 +46,7 @@ const AllBooksPage = () => {
         {/* sorting book  */}
 
         <select onChange={handleSelect} defaultValue="Pick an option" className="select">
-          <option>Pick an option</option>
+          <option value="">Pick an option</option>
           <option value="price-desc">Price: High - Low</option>
           <option value="price-asc">Price: Low - High </option>
         </select>
