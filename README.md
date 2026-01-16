@@ -1,16 +1,63 @@
-# React + Vite
+# 📚 Book Courier
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🔗 Live Website
+🌐 https://kaleidoscopic-strudel-b09efa.netlify.app/
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎯 Project Purpose
+**Book Courier** is an online book browsing and delivery platform where users can explore books, view details, register/login, and interact with a modern, responsive web interface. The project focuses on clean UI, secure authentication, and dynamic book sorting and searching.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Key Features
+- 🔐 User authentication (Register / Login)
+- 🖼️ Profile image upload using **imgbb**
+- 📚 Browse published books
+- 🔍 Search books by name
+- 🔃 Sort books by:
+  - Price (ascending / descending)
+- 📄 Book details page
+- 🛒 Order books
+- 💵 Payment with Stripe payment gateway
+- 💻 Admin, Librarian, Customer role
+- 📈 Dashboard for Orders, Wishlist, Payment, Invoice
+- 🚫 Custom error & forbidden pages
+- 📱 Fully responsive design (mobile, tablet, desktop)
+- ⚡ Fast data fetching with Axios
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Technologies Used
+### Frontend
+- React
+- React Router
+- Tailwind CSS
+- DaisyUI
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+
+---
+
+## 📦 NPM Packages Used
+### Frontend
+- `react`
+- `react-router`
+- `react-hook-form`
+- `axios`
+- `firebase`
+- `react-toastify`
+- `sweetalert2`
+- `react-icons`
+
+### Backend
+- `express`
+- `cors`
+- `dotenv`
+- `mongodb`
+- `firebase-admin`
+- `stripe`
+---

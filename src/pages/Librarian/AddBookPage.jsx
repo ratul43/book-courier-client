@@ -94,7 +94,7 @@ const AddBookPage = () => {
               <label className="label font-semibold">Description</label>
               <textarea
                 className="textarea h-24"
-                placeholder="Bio"
+                placeholder="Description"
                 {...register("description", { required: true })}
               ></textarea>
               {errors.description?.type === "required" && (
